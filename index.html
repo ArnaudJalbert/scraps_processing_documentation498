@@ -1,0 +1,1077 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Scraps Processing</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4287926e-f349-4da0-9c1d-758066cff35e" class="page sans"><header><h1 class="page-title">Scraps Processing</h1><p class="page-description"></p></header><div class="page-body"><nav id="bed4c665-0a06-49ad-b3b2-cf6127f1e5f5" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#94370b83-28bd-4ccc-b67d-3dd5b58a1ba5">Research Questions</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a878d75b-4583-4622-ba9d-14661fa6cbaa">Keywords</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#57e566dc-9ad2-4a54-930f-4ca83733647d">Description of the project</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#bbfaf1ec-ca60-479a-8bb9-943f6222d4da">Research</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#49d1d213-e587-4cba-b3dc-2062e4036f13">Brainstorm Session</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b40b8e6f-442b-4a69-a13a-fe65a3336b0e">Meeting with fashion designer</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bbf07285-b189-4d42-bff0-87778473bac2">Meeting with other fashion designers, technicians and hobbyists</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8770901b-f4bb-4aff-be5f-37fdcc7d07d3">Visiting studios and scraps stashes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#33248b88-4e3b-47d9-acf8-99faa642883a">Digital measurement</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7176f0b6-650b-4be0-be6b-f66b42a7e2b5">Inspiration</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#eab68595-4564-4742-b11b-5abd92a1b20c">Nicole McLaughlin</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4c6630e0-1213-4d5c-83f0-f2d80bca42f2">Matters of Care</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f4a77a3a-d8d8-43b2-a8e6-6b0e4a2e3748">Queer Phenomenology</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d502bee6-d9a6-4d41-b1ad-f8345b41fb5e">American quilts: The democratic art</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e98f200f-6d60-4f51-82e4-3d6e8c1bbb9a">Scraps Processing Scanner Development</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d9de35c1-8186-46ea-a98b-ce264b749a50">Repository</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cfb1cbbd-3599-44c8-aa3b-419648e57db4">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f28b2355-1f51-42be-b7e5-5d40b5d3f8f9">Technology</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#5dc0fd88-5be9-4749-b8a2-a56abeb126bf">Augmented Reality Engine</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f1cf2a7a-685d-47d7-bc06-70226a390ae4">Development Tools</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#58591cd0-85b4-4500-b203-3eca8775d722">Features</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#575d89c8-65c0-49a4-b627-0321eb922ed2">Login and Create Account</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#04334f07-5101-40a8-b3de-4eea01badd19">Workflow</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1d5644f5-b3d4-4658-9d63-79baf528b292">AR Plane Detection</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#c43b4d32-f019-4e62-bcfb-09a8442095a7">Raycasting</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#7d88ab0f-db73-4865-b435-066bb7ff3209">Distance between points</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#7b79d36b-3bed-4140-a2a7-3eb01a73b6e5">Outline Drawing Integration</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#08d4d554-0718-42ec-83bd-c2d2b4badbdb">Taking a Screenshot</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#9e1ef8be-727d-469b-b4f9-4e1b88127ef8">Sending Scraps Data</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#d0a7b390-ee76-4c6f-956d-23ecd7dbc28a">Identification</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5ff4d7a6-9033-4f58-8152-af67c7eeaa5e">Live Demo</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#020825dd-f070-49b9-8482-29600a7e4b7a">Create an account and register a scrap</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#bafdca9c-9cf4-486e-b134-bb4396a452a8">Login and register a scrap</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6aee66c9-0fa3-4004-91dd-99723f6181ce">Non-implemented Features</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#fe8ffd55-0018-4864-b43a-325cbc82a77a">Color detection</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#e9c2033b-6031-4d53-8938-0188afbe5286">Integration with React Native</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6b8ca399-28b1-4f64-b374-c2a927221bb1">Scraps Processing API Development</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#49257517-3b47-4207-b262-bc47e44d43dc">Repository</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8823cf63-ba98-4ba0-b0de-43b114631df9">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6ce617ad-207b-4a21-bca8-f8db18a99ae4">Technology</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#e3514116-5573-4799-a578-df32aa0741ed">Python</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#459b99c6-5cc7-405d-a421-b9ea15b29b38">Flask</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#0c1404bc-4b2e-493e-9016-ce5f08dd99cc">MongoDB</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#7cdad988-eec1-4a78-98ac-cbd169d272dd">Fly.io</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6cfee8da-be82-4511-8322-71a2d2781b0d">Features</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#53241aab-6459-4ca6-9635-d81c5cba5580">Database Director</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#5033f141-6186-4c2b-9418-f9890712f598">Create Scraps</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#9791b409-5235-44b0-ad81-b37b709bb39f">Get Scraps</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#b0041ef0-2953-426d-a8d6-af93915aef6b">Filter Scraps</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#97572381-9c8c-49db-b457-47c880b36176">Get scraps within a certain distance</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#cea036b0-05af-4196-8fdb-d12a965099c5">Get Textile Types and Classes</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#9893103f-3943-417d-9156-17e0853578f9">Create/Login into an Account</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#5763e92c-a5e8-4c07-8a5f-31b9e566cf61">Upload Image</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ad4646c1-812a-46c7-a886-eec03199f001">Non-implemented Features</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#9dc5b458-592c-46f2-bd48-a4354dcac6f3">Working Login System</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#93e80093-bf9e-4b70-a9e0-e2a71a32ec8f">Testing</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ac2a4cf1-bce4-45d2-bb49-03985c88278d">Scraps Processing Interface Development</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c4c723a4-c3d6-49b7-9d56-3045cad95ab8">Repository</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c375997b-60d3-45f7-ac8f-784d1fe6067c">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a5a69ac-a23c-4b2a-bb99-52adb3dbc77d">Technology</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f0bbe832-c78e-4de7-8e7f-257b40a4f305">React Native</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e5d1cff-6c53-42a5-b1b9-7797636889b4">Expo</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a1474d98-cd03-4725-89e3-6aa599cdae53">Features</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#25b52c66-7201-491c-a334-98823bc0cd06">Login Page</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#216591ea-b17a-4fcb-9c65-e0643e5ddf16">Location</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#b09298bb-e09e-478d-8ad5-26e8d3ffdf31">Scraps View</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#49ca5f81-fcb3-4d68-9c1e-3666516c773e">Shape Fit</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#654002b0-20f9-42e3-af24-7fe64165e685">Filter</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#7e94d646-717d-457c-8f71-884a3e3491ea">Scraps Information</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a14dd3c1-c5be-4d08-a899-a5b5f0f96568">Live Demo</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7d2ad697-cd79-421b-8e07-439f06f1f7b7">Non-implemented Features</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#56ef599c-8f75-4568-8f18-e888668ba718">Enhanced User Experience</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#ece50962-464e-4168-8a62-7a3c6bb99a69">Multiple Scraps View</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#7394ddbc-ba56-4f44-8850-cb9f00fab654">Modification of data</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1fa2f3ad-4c36-49a5-a180-a4cb527f954c">Mosaic View</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c0858a73-3b4c-474b-ad14-ab5ef25e512b">Exhibition</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#25aa5ae7-e9fa-4937-990b-32624e10080f">Reflection</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9b6583b4-dc5b-44e0-994e-0153f3abbdb0">Bibliography</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4542a15f-9b0c-4d4a-85f4-40b2395a1ae0">Public Mediation @ 4th Space</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#41296f96-f74a-47a3-92b2-10644bb39f71">Process</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#3b65fc07-8ce2-4c87-80ad-f1c5d705cb24">Poster</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#b26e04d8-d514-4fae-9dee-d39fc64b03de">Representatives</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#fe448388-d77e-4cd4-ae81-e06a3ef7bcbf">Sensory Attunement Session</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#e57d7a60-c2f1-463d-9a8e-c65522980a9a">Individual Presentation</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f8d61182-0b51-46e6-9814-cf53e7578678">Roundtable</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#741ac076-8089-4b0c-a4c7-b8d398ceca99">Reflection</a></div></nav><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="71021963-e167-4ddd-92c6-cd70882fe1cf"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/info-alternate_gray.svg"/></div><div style="width:100%"><span style="border-bottom:0.05em solid"><strong>CART498 Final PDF for Project “</strong></span><em><span style="border-bottom:0.05em solid"><strong>Scraps_Processing</strong></span></em><span style="border-bottom:0.05em solid"><strong>” by Arnaud Jalbert</strong></span></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4c9b01bc-1eb1-43e6-81b9-c45e059acca2"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/postage-stamp_gray.svg"/></div><div style="width:100%"><span style="border-bottom:0.05em solid"><strong>Presented to professor Alice Jarry</strong></span></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7809acc6-b725-40ec-9000-85b4045013b3"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/mail_gray.svg"/></div><div style="width:100%"><span style="border-bottom:0.05em solid"><strong>arno.jalbert@gmail.com</strong></span></div></figure><h1 id="94370b83-28bd-4ccc-b67d-3dd5b58a1ba5" class="">Research Questions</h1><blockquote id="8a31b25d-c725-4cf8-b0ad-fe35f117cf28" class=""><em>How can we effectively collect and catalog data of fabric scraps so they can be searched and shared collectively?</em></blockquote><blockquote id="70a91565-b4e8-40db-8533-d56e52d39b37" class=""><em>How can the process of up-cycling fabric scraps, which is usually complex and laborious for smaller companies and individuals, be digitized and optimized?</em></blockquote><blockquote id="0baa1209-67b3-4cd0-9ae0-76d9318c0d71" class=""><em>How can we systematically organize and categorize fabric scraps, physically and digitally, so that they can be used in an algorithmic and efficient way?</em></blockquote><h1 id="a878d75b-4583-4622-ba9d-14661fa6cbaa" class="">Keywords</h1><ul id="82c7bac5-875e-450a-8814-0d2fbb3f40e7" class="bulleted-list"><li style="list-style-type:disc">Cataloguing</li></ul><ul id="641d39da-f66e-4b51-a5b9-93e323f771cf" class="bulleted-list"><li style="list-style-type:disc">Data collection</li></ul><ul id="19e935b6-c195-4e49-9ca8-b617873c7840" class="bulleted-list"><li style="list-style-type:disc">Diverting</li></ul><ul id="82c2b3ac-678d-4176-abf8-38741616306d" class="bulleted-list"><li style="list-style-type:disc">Collectivity</li></ul><ul id="42eebcc4-68e4-4fc6-beff-cc8e2eb221d6" class="bulleted-list"><li style="list-style-type:disc">Upcycling</li></ul><ul id="d18af364-980e-4cca-aae2-70fbd849b6b2" class="bulleted-list"><li style="list-style-type:disc">Process Digitization</li></ul><h1 id="57e566dc-9ad2-4a54-930f-4ca83733647d" class="">Description of the project</h1><p id="90253788-1067-4f69-88fa-c9e1e175aaa1" class="">When working with fabrics to create garments, there will inevitably be some kind of leftover scraps. These remnants occur when fabric is cut to fit a certain pattern, to reduce its size to fit in a certain spot or be sewn to something else. Most people are conscious of this and will work in a way to minimize fabrics waste, but most of the time there will be small oddly shaped pieces left.
+These scraps are not necessarily wasted. Companies like <a href="https://www.regear.arcteryx.com/">Arc’teryx</a> and <a href="https://www.insider.com/guides/style/cotopaxi-outdoor-gear-del-dia-backpacks-2017-9">Cotopaxi</a> assemble the bigger scraps together to create quality products. Organizations like <a href="https://fabscrap.org">FABSCRAP</a> will gather scraps from different companies to recycle and reuse them as much as possible. The bigger scraps can often be re-used and re-distributed for smaller garments. The small ones can be shredded and used for insulation, fill for pillows, couches, and many others. These methods work and are efficient since these companies have a high volume of scraps and a system in place.
+Scraps are also re-used at a smaller scale. <a href="https://concordiauniversity.on.worldcat.org/search/detail/268547505?queryString=American%20quilts%20%3A%20the%20democratic%20art%2C%201780-2007%20%2F%20Robert%20Shaw.&amp;databaseList=">American quilters</a> have been known to reuse small and weirdly shaped scraps in crazy quilts since the 1800s(Shaw, 2009). Scraps can be used for small garments like masks, scrunchies, clothes labels and tags. They are used for smaller projects since amateurs or students often have a small volume of scraps.</p><p id="01e9419c-5c64-4511-9f32-bab62b2a8362" class="">Even if they have enough scraps to make a bigger project, it does not mean that they will fit together and the type of fabrics may vary greatly and be hard to assemble together. One could try to share their scraps with others but it can be long and tedious. So what if there was an efficient way to see exactly which scraps someone has and if they have enough to make a certain garment?</p><p id="e15d07ee-d7e0-48b6-b626-5eb63194e4a8" class="">Scraps Processing is a project that aims to divert how textile scraps are used. It is trying to find a new processes to collect data about textile scraps using modern digital and using that information to better organize, search, and share textile scraps. The project has two goals:</p><ul id="8410d132-4c8e-4adc-ad55-a5978d51c915" class="bulleted-list"><li style="list-style-type:disc">Create a process to quickly and efficiently gather data about a textile scrap.</li></ul><ul id="aaeb58b2-2be5-45cf-aab3-6809d4c2c48f" class="bulleted-list"><li style="list-style-type:disc">Implement interfaces to efficiently visualize and organize the scraps and allow sharing of those scraps within the community.</li></ul><p id="2da6fbb1-9de4-4609-b578-8e042eeda233" class="">By implementing these new processes, the project tries to change the way we interact with scraps and hopefully enhance their value and usage.</p><h1 id="bbfaf1ec-ca60-479a-8bb9-943f6222d4da" class="">Research</h1><h2 id="49d1d213-e587-4cba-b3dc-2062e4036f13" class="">Brainstorm Session</h2><p id="9526b7ef-14d9-4212-8115-a62e5435a7e3" class="">One of the first meeting I did was with Sabine Rosenberg, the computation lab coordinator at Concordia University, as well as Wawa Li who is a student in the Computation Arts program and a research assistant at Indigenous Futures Research Centre, but that also has extensive experience as an independent fashion designer. This meeting went on for about 2 hours.</p><p id="7de0f88d-a4b1-44cd-8813-fe25b61a8143" class="">I wanted to discuss the feasibility of my project, both on a technical level but also on the conceptual level. Since both have technical knowledge and Wawa had experience with garments, textile, and fashion, I was able to get good insights on how I should envision the data collection process and the sharing platform. The first thing we discussed was the data collection process, how the textile scraps information should be gathered, with which equipment, which type of data should be collected, how communication should be made, and many other parameters. The first we cleared up was that the information that would be useful to gather would be:</p><ul id="f0488948-8b1a-4167-86c0-ca4f26433389" class="bulleted-list"><li style="list-style-type:disc">Type of the textile(cotton, polyester, wool, acrylic,…)</li></ul><ul id="f003cf45-fff1-4cd9-ad46-4bf31ffbf086" class="bulleted-list"><li style="list-style-type:disc">Class of the textile(natural of synthetic)</li></ul><ul id="7b3388d5-5943-4712-82c6-9d1a5ffce8b7" class="bulleted-list"><li style="list-style-type:disc">Picture of the scrap</li></ul><ul id="73ee52be-537f-467f-ae1a-a8cf464f99e4" class="bulleted-list"><li style="list-style-type:disc">Location of the scrap</li></ul><ul id="7bf942a5-6079-4016-a604-7925ada422e0" class="bulleted-list"><li style="list-style-type:disc">The outline of the scrap that includes the dimensions</li></ul><ul id="5dfe7837-029f-4ccc-9672-3c6a6a804fd3" class="bulleted-list"><li style="list-style-type:disc">Any particular notes about the scrap</li></ul><p id="24417335-b59b-4cf0-8392-d5504d26a40d" class="">Then, we went on to consider how that information should be collected. Wawa made it clear that a lot of designer and hobbyists are not comfortable with messing around with cameras, cables plugging and software installation. She told me that a process that is too technical would be a barrier of entry to using the tool. She also told me that a lot of designer only work with their iPad so a computer based platform would not be feasible. From that meeting, the most valuable lesson that was learned was that both the data collection and scrap sharing platform had to be accessible by phone or tablet and that external hardware would add too much friction to the process.</p><h2 id="b40b8e6f-442b-4a69-a13a-fe65a3336b0e" class="">Meeting with fashion designer</h2><p id="f88dd8c4-1aad-44ab-8ee9-aee5f7e06722" class="">I then decided to get opinions from fashion designers and other hobbyists who work with textiles and garments. I asked my partner, Carrie-Mole Gemme Pilote, who is the Fashion Designer at <a href="https://bench.ca/?gclid=Cj0KCQiA4NWrBhD-ARIsAFCKwWtTXV-mTsC-znZyKqQX0_AB2X4A-dpBJky8iP9LSp2zhniNLgIvhUYaAsGSEALw_wcB">Bench Canada</a> and also work on her own project <a href="https://www.instagram.com/mole.bags/">Mole</a> which are bags made entirely from deadstock and repurposed material. </p><p id="0a67fe84-b7bc-4caf-80e1-df359261c767" class="">We sat down for 2-3 hours and discussed my ideas, how I thought it should be implemented, the platform it should be on and the features that should be available. She gave me really good ideas how scraps could be shared, for example suggesting that a filter of distance should be integrated to check scraps that are only close by. She supported this idea by explaining that a lot of different studios are located in the same areas(Chabanel, Mile-end, Saint-Laurent,…) and that someone might not want to make a 2 hours trip to go pick up a scrap but that they would probably walk 15-20 minutes to a studio nearby to pick up a scrap that would work in their project. </p><p id="47b6403b-0730-4100-8c10-7b4bcfde2568" class="">She also explained that she often cuts scraps into a square or rectangle to use it as a patch, for a pocket, or other small fabrics needs. She suggested this idea checking if a certain rectangle can fit inside the scrap so it could be cut off into that shape. That would allow to check if a scrap fits someone’s needs before committing to go check out the scrap.</p><h2 id="bbf07285-b189-4d42-bff0-87778473bac2" class="">Meeting with other fashion designers, technicians and hobbyists</h2><p id="957ce749-27df-4f30-9b52-c35f6764f5e2" class="">I met up with other designers, textile technicians and hobbyists. They consisted in majority of friends of my partner as well as some of my friends and acquaintances. I met up shortly with them. The goal was to briefly describe the project and check if this is something they would be interested in or would find useful.</p><p id="1de06005-fdc9-4b9f-819a-7d707b07b951" class="">Most of them seemed excited about the idea and told me it would be very useful. I did not spend enough time with them to get real insights and features ideas. Given the timeframe, I already had enough work to implement and I just wanted to confirm that the current ideas would be useful to the targeted audience.</p><p id="ffd2a205-8277-43ce-9ae2-51fb8e011e68" class="">While it has not given me any new ideas, it confirmed that the project was heading in the right direction and that if developed right the application would work and accomplish what it aimed to. I also briefly talked about them how they currently sort and organize their own scraps. The most popular method was by sorting them by size, types, or colors in some sort of container like a bin or a bag.</p><h2 id="8770901b-f4bb-4aff-be5f-37fdcc7d07d3" class="">Visiting studios and scraps stashes</h2><p id="625edfd7-926d-4fee-a86b-b5f1edd123c6" class="">I went to the<a href="https://www.citizenvintage.com/"> Citizen Vintage</a>’s studio to visit how they were organizing their materials and how they were sorting scraps. In general, there was no centralized system. The scraps were mostly in bins and were organized by categories. Some of them were sorted by textile types or classes, some of them per color, there were bins of multiple scraps coming from the same original roll of fabrics. There were also organized by size since the bigger scraps were often more useful or could be cut up like it was mentioned earlier. </p><p id="e4fc1232-ee71-4e33-a015-d876ce046bf1" class="">When I talked to the employee, they told me they will organize the scraps at the end of a project depending on a lot of factors. If there are still a lot of “new” textile left, they will put the scraps together to keep them near the untouched textile so it can be used for small adjustments later. Sometimes they have ideas of what they could do with the scraps, hence they will keep it together for future use or add it to an existing stash specifically put together for a project. If none of these are needed, then they will organize them in the existing bins of miscellaneous scraps.</p><p id="b98b08f7-5b0d-4e18-b467-3634f9c91f55" class="">This gave me ideas about creating collections to either use the scraps for a specific project and keep them grouped. What the employee told me in response is that if they already knew what they were gonna use the scraps for, they would probably not take the time to put them in the database. They continued by saying that they use the application for scraps that they do not have an instant usage for, but not for scraps for which they would know how to reuse it.</p><h2 id="33248b88-4e3b-47d9-acf8-99faa642883a" class="">Digital measurement</h2><p id="ddfdbf4f-92b6-4f2a-b194-71a731baf511" class="">Taking the measures by hand and entering them would have been complex, laborious and unprecise. Using specific equipment was also out of the question. So, I had this idea of using augmented reality(AR) to take the measurements and draw the outline of the shape. Very similar to how the Apple’s measure application work, I wanted to use AR to take the measurements quickly and have accurate results. </p><p id="bb5e1985-b906-4d1d-b0ea-f748ca9f0766" class="">I first tested out the Apple’s app since I was a bit skeptical of the accuracy but it turned out to be pretty good. I met up with my friend Michael who works for an augmented reality start-up(<a href="https://elysium.ar/">Elysium</a>) to get insights on how I could develop the application. He gave me a couple of tips on how to develop the application and suggested I use a <a href="https://en.wikipedia.org/wiki/WebAR">WebAR</a> since my application would not have any complex AR features.</p><p id="d26cb816-0f56-4f27-b7c9-41ad412f7e8c" class="">It also allowed me to integrate it easily in any application that supported a web browser. He told me that using another AR framework like <a href="https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@5.1/manual/index.html">Unity</a> would be too complex and overkill for my use case. I followed his suggestions but as it will be mentioned later it turned out to be the wrong approach. At the time of our meeting it made sense to use WebAR but as the project evolved it became clear that I should have re-assessed this decision earlier.</p><h1 id="7176f0b6-650b-4be0-be6b-f66b42a7e2b5" class="">Inspiration</h1><h2 id="eab68595-4564-4742-b11b-5abd92a1b20c" class="">Nicole McLaughlin</h2><div id="c0b51a94-2f8d-4a66-a964-b4f10b4b4c7b" class="column-list"><div id="9b0ddaf8-a24f-4837-a2dd-f7eee08d00b1" style="width:12.5%" class="column"><figure id="3c41a11d-afae-4e71-879f-86eff8140a05" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled.png"><img style="width:1961px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled.png"/></a></figure><figure id="536bf25a-452e-4f4d-9437-2e1fd4dc1c3f" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%201.png"><img style="width:2500px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%201.png"/></a></figure><figure id="ecd54772-2457-47f4-9a08-69aed89d2d08" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%202.png"><img style="width:1237px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%202.png"/></a></figure></div><div id="21b9767c-bebb-466e-9b98-0b233e684394" style="width:12.5%" class="column"><figure id="bc3baf39-afa6-4a0b-b0e2-b9e53dd57b7a" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%203.png"><img style="width:288px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%203.png"/></a></figure><figure id="ecbe036f-a189-4f4d-958f-7fea2f235bf4" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%204.png"><img style="width:1093px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%204.png"/></a></figure><figure id="a12e3c10-2ab6-4fe8-ba4e-36074a6db4eb" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%205.png"><img style="width:1239px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%205.png"/></a></figure></div><div id="3856e028-7719-46d1-bb6d-2e5b7a335841" style="width:12.5%" class="column"><figure id="91a0f5b9-9734-48fc-948a-d963e4beae96" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%206.png"><img style="width:1000px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%206.png"/></a></figure><figure id="a19f272c-f55a-4e17-9a3c-9c5cd6612f0f" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%207.png"><img style="width:1231px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%207.png"/></a></figure><figure id="a3006533-aaaf-4d7f-8f33-6c12a68a270f" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%208.png"><img style="width:1500px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%208.png"/></a></figure></div><div id="8cf22c09-1075-4c8c-8704-29f25368a943" style="width:62.50000000000002%" class="column"><p id="54073d21-7995-4896-ade6-32d683670c1e" class="">My first inspiration and what has probably indirectly influenced the project is the fashion designer Nicole McLaughlin. She has come into the spotlight with her innovative transformation of repurposed materials, but more specifically used garments, into unconventional pieces. For example, transforming soccer balls into slippers, Reebok hats into shorts, fanny packs into a bra.</p><p id="a1fca938-89a4-4910-bb1a-8eea683732d1" class="">She’s not only creating garments. She has expanded her use of repurposed materials and scraps to other objects like chairs or suitcases.</p><p id="510955ad-2f0e-4f5e-8d77-7c0664980239" class="">She even creates ephemeral pieces like bread vests, sushi sandals with a built-in chopsticks rack, or ice tray sandals(McLaughlin, 2021).</p><p id="8c7cdfdc-af07-4176-8bec-ebaa59a7a602" class="">I think what’s interesting in her practice is not necessarily the functionality of the materials she create, but rather the idea repurposing materials and putting them in a context they were never supposed to be. She’s showing us that materials belong where we design them to be, forcing us to rethink what is waste and what can be still be useful(.</p><p id="2212f017-7704-4b70-bf2e-11d392619615" class="">
+</p></div></div><p id="b6dbdcd7-15de-435e-a0b0-80854fb4782a" class="">Images taken from Nicole <a href="https://nicolemclaughlin.com/exploration">McLaughlin’s website</a>.</p><h2 id="4c6630e0-1213-4d5c-83f0-f2d80bca42f2" class="">Matters of Care</h2><p id="a99cc783-dd34-4804-99a4-619822afc451" class="">I was also greatly inspired by “<em>Matters of Care</em>” by María Puig de la Bellacasa(Puig de la Bellacasa, 2017). I liked their idea of expanding our notion of care outside the human realm. Thinking about how we care about the materials can be done in many ways. It made me rethink about the notion of care in my own project, is my project incorporating any care? I believe so, I am giving an identity, a trace, a better chance to be useful in the future to a material whose chances of being wasted is very high. I think my project incorporates care by making us take the time to create a way to come back to the scraps, to not forget, since not forgetting is a way of caring. We forget to water our plants, forget our leftovers in the fridge, forget to wash our coats to preserve them. Forgetting in these cases leads to our plants dying, our leftovers expiring, our coats losing their capabilities. By forcing us to remember, we are taking care of our materials, and that is the analogy I made with my project and the matter of care.</p><h2 id="f4a77a3a-d8d8-43b2-a8e6-6b0e4a2e3748" class="">Queer Phenomenology</h2><p id="c9dd6f0a-03d6-45fe-aaab-37ec3002f1fd" class="">The text we read in class from Sara Ahmed also resonated with my project(Ahmed, 2005). This idea of how the orientation and how an object is represented in space can affect its perception and how we interact with it. In the case of the material I’m working with, its proximity and position is extremely important. A certain scrap could probably be perfect for someone’s project but since it may exists in someone else’s studio, or even in their own studio but be hidden away, it will never be found. My project may not physically bring scraps closer, but it helps brings the existence of it closer to someone, extend the existence of the material.</p><h2 id="d502bee6-d9a6-4d41-b1ad-f8345b41fb5e" class="">American quilts: The democratic art</h2><p id="285fcfdd-720b-40d4-b92c-d6393a8eaa59" class="">I think quilting is a great example of how scraps can be repurposed and how its value can be augmented if put in the right context. For example, the crazy quilts, which are made entirely from repurposed scraps from other projects. They were extremely time consuming since each scrap had to be re-assembled in a way that fits with all the others, certain scraps had to be cut precisely to fit in a certain spot. What could once be considered waste suddenly was invaluable for a project like this, making pieces that were exhibited and cherished for years by families and exposed in their home.</p><h1 id="e98f200f-6d60-4f51-82e4-3d6e8c1bbb9a" class="">Scraps Processing Scanner Development</h1><h2 id="d9de35c1-8186-46ea-a98b-ce264b749a50" class="">Repository</h2><figure id="33e72324-9d68-4184-a6bb-3fd13564e4cc"><div class="source">https://github.com/ArnaudJalbert/scraps_processing</div></figure><h2 id="cfb1cbbd-3599-44c8-aa3b-419648e57db4" class="">Introduction</h2><p id="206552b4-57e8-42d1-8c28-ab6cd7645531" class="">This is definitely the most complex component of the project. A lot more research was done to implement the scanner than any other modules of the project. It is also the part of the project I spent the most time implementing. I would say I spent as much time working on the scanner than I spent working on the interface and the API.</p><h2 id="f28b2355-1f51-42be-b7e5-5d40b5d3f8f9" class="">Technology</h2><h3 id="5dc0fd88-5be9-4749-b8a2-a56abeb126bf" class="">Augmented Reality Engine</h3><p id="458e5f36-b43d-40b8-b2b0-3e0ad969aefd" class=""><span style="border-bottom:0.05em solid"><strong>Viro</strong></span></p><p id="11059971-1df7-491c-9a48-4af7ddc01dde" class="">When I first started my research to find a viable process to digitally measure distances with a phone, my first stop was <a href="https://github.com/ViroCommunity">Viro</a>. Viro is an augmented reality and virtual reality framework that has been built to be directly integrated into <a href="https://reactnative.dev/">React Native</a>. Since I wanted to use React Native, it made sense to use this framework since I could then build my interface directly in the same interface. However, I started setting up the project and encountered numerous problems.</p><p id="ac7186ed-ce12-4aaf-bc9d-f4287f63aa33" class="">First of all, I needed to be on a much older version of React Native to make Viro work. This caused a lot of problems when trying to run the app since most packages within this version were deprecated and caused conflicts with the other packages I wanted to use to make the interface. I have tried a couple of times to make it work but the dependencies became really complex really quickly.</p><pre id="b1595f81-264e-41f5-9254-8121b1c8ffae" class="code"><code>&quot;Failed to construct transformer:  Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:71:19)
+    at Object.createHash (node:crypto:133:10)
+    at stableHash (F:\Android\samples\ARDrivingCar\node_modules\metro-cache\src\stableHash.js:19:8)
+    at Object.getCacheKey (F:\Android\samples\ARDrivingCar\node_modules\metro-transform-worker\src\index.js:593:7)
+    at getTransformCacheKey (F:\Android\samples\ARDrivingCar\node_modules\metro\src\DeltaBundler\getTransformCacheKey.js:24:19)
+    at new Transformer (F:\Android\samples\ARDrivingCar\node_modules\metro\src\DeltaBundler\Transformer.js:48:9)
+    at F:\Android\samples\ARDrivingCar\node_modules\metro\src\Bundler.js:22:29
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at process.processTimers (node:internal/timers:509:9) {
+  opensslErrorStack: [ &#x27;error:03000086:digital envelope routines::initialization error&#x27; ],
+  library: &#x27;digital envelope routines&#x27;,
+  reason: &#x27;unsupported&#x27;,
+  code: &#x27;ERR_OSSL_EVP_UNSUPPORTED&#x27;
+}&quot;</code></pre><p id="daf8de2b-e887-4209-a99c-5245b7609070" class="">Also, Viro is not currently maintained. Hence, all the bugs, new features, and issues are currently not being worked on and it is very difficult to get some support. Just looking at the Discord, it seemed like everyone had similar problems. I decided to not use Viro since it was not maintained and difficult to work with.</p><p id="4905638a-aeaf-4d6a-ad68-d78609e6428b" class=""><span style="border-bottom:0.05em solid"><strong>A-Frame</strong></span></p><p id="f1da0790-d655-41f7-9f09-a7ed447cfcaa" class="">After the failed attempt at using Viro, I decided to try out <a href="https://aframe.io/">A-Frame</a>. It is initially a WebVR framework that is not meant to be used as an augmented reality engine. But, another project called <a href="https://jeromeetienne.github.io/AR.js/aframe/">aframe-ar</a> initiated by <a href="https://github.com/jeromeetienne">Jerome Etienne</a> used the VR capabilities of the framework to enable AR as well.</p><div id="7dde358a-e1aa-4ef2-bb35-8e16213eb9ec" class="column-list"><div id="deff5e31-9481-4064-9a85-09dc32803c62" style="width:50%" class="column"><p id="c3cdad4c-29fc-4817-9a7f-6c2f0682a988" class="">I looked promising at first since it could work directly in the browser, allowing me to integrate directly into my React Native application. I was able to get the first example working and make some objects float along a Hiro target.</p></div><div id="9acc7ad7-0c8b-400f-9269-1e793d69836a" style="width:50%" class="column"><figure id="b9535cbf-7afa-4c33-81ed-e549114319f7" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%209.png"><img style="width:480px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%209.png"/></a></figure></div></div><p id="96ac7525-8c88-434d-8e66-1f4034251f64" class="">Now that the basic application worked, I first tried to implement what is called a “hit test”, which is simply when the user clicks on the screen and the engine tries to map the point that was tapped as a point in the AR environment. My thought process was that if I was able to get multiple 3D points, then I could find the distance between them and create the outline with multiple hit points. While there looked like there were examples that were doing similar operations to what I wanted to do, I had a lot of trouble finding good documentation to accomplish what I wanted to do. While I think I would have been able to find a solution eventually, there were a lot of issues with mobile browsers and if doing such a simple thing was that complicated, it would not be a sustainable way to continue the project</p><p id="23f556bf-21d5-4ccd-9ca2-be22e4e4dbf9" class=""><span style="border-bottom:0.05em solid"><strong>Unity</strong></span></p><p id="69f10bd2-76f7-47b2-a351-03fa96add826" class="">I knew from the start Unity had a really good AR engine. The reasons I tried to avoid it is because I felt it was overkill for the type of features I wanted to implement and thought the learning curve would be to hard to overcome. But, after analyzing the application and looking at examples, I realized that there were a lot of examples, really good documentation and all the basic tools I needed to make the app work were available. The big drawback of this approach was that it would be difficult to integrate the Unity app into a React Native and was not sure I would have the time given the timeframe. I thought I could do a WebXR build that would be ran on the browser but after looking into it, it was not very viable and the company that enabled that feature, <a href="https://www.zappar.com/">Zappar</a>, charged a very steep fee to do so and there were lots of comments saying it did not always worked. For this iteration, I decided to compromise on having a fully integrated application and opted to develop the interface and scanner separately. After looking at this <a href="https://www.youtube.com/watch?v=BsaPlgPn618&amp;t=1943s">workshop</a> showing the basics of creating a measuring app and making a test myself, I settled on Unity as my platform to create the digital measure app.</p><h3 id="f1cf2a7a-685d-47d7-bc06-70226a390ae4" class="">Development Tools</h3><p id="5dc057c7-0d49-497a-b56e-aeef574b2c81" class=""><span style="border-bottom:0.05em solid"><strong>Platform choice</strong></span></p><p id="abeaa542-8ebe-4f3e-a5bb-7e78a1a59ca7" class="">I decided to stick to iOS since I already have an iOS device and most people that would use this tool seems to also use an iOS device, including the iPhone but also the iPad. But, we will see later that the work done can also be exported to Android with the tools I chose to use.</p><p id="2e2df07a-d49d-479f-8fee-4ff34e1b1810" class=""><span style="border-bottom:0.05em solid"><strong>AR Foundation</strong></span></p><div id="868762b0-a159-443b-aa76-b08c6e8a5609" class="column-list"><div id="6e13d713-43bc-450a-8da5-0bc105fa47f5" style="width:50%" class="column"><p id="ca4d18ef-3183-492f-ae62-06bf64aba4e9" class=""><a href="https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@5.1/manual/index.html">AR foundation</a> is multi-platform AR framework that enables to develop the AR functionality once in Unity which can then be built for different platform. It works very similarly to React Native by adapting the written code to the different target platforms by building them natively to that platform. This was very useful since I could develop the app once and export to iOS and Android directly.</p></div><div id="a16a8dd4-074b-4bae-988b-448083260dd7" style="width:50%" class="column"><figure id="961c2f97-5cab-41e5-83d3-9635d90df9c4" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_12.23.20_PM.png"><img style="width:966px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_12.23.20_PM.png"/></a></figure></div></div><p id="182910c3-76bd-4083-b858-5259413eeb26" class=""><span style="border-bottom:0.05em solid"><strong>Xcode</strong></span></p><p id="f78846eb-4e44-4e5b-a47e-0b53d47bb808" class="">This is necessary to build the iOS app and to test it on the iOS device. Unity does provide a very nice tool to build the Unity application into an Xcode very easily which can then be ran directly in Xcode. It is not used for development only for running and building the application.</p><h2 id="58591cd0-85b4-4500-b203-3eca8775d722" class="">Features</h2><h3 id="575d89c8-65c0-49a4-b627-0321eb922ed2" class="">Login and Create Account</h3><div id="ff48b399-8c75-43c3-8b0a-f88c014ec3fb" class="column-list"><div id="a62a51b9-6de0-403d-ba3d-8a24737b4a71" style="width:75%" class="column"><p id="5b52060c-048e-42e0-81de-21eab054c750" class="">There is a simple interface to let user identify itself or simply create an account to identify ownership of the scrap. To implement this, I simply ask user to enter identification information like username, email or instagram handle. This information is then sent to the API to check the user’s record on the database and returns the ID of that user so it can be used to register the scrap.</p><p id="58a8d1cd-17b9-417d-9624-778b5b464673" class="">All the User Interface elements were made in Unity directly using Unity’s provided UI components and game objects.</p></div><div id="939ad9c4-e59c-43f7-821d-c6e069a5245a" style="width:24.999999999999996%" class="column"><figure id="fc1b8211-f845-4aa8-b958-c886783aca96" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-08_at_11.20.46_AM.png"><img style="width:878px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-08_at_11.20.46_AM.png"/></a></figure></div></div><div id="b8f0f962-5b0d-4cb2-8cc4-8d457625cd1e" class="column-list"><div id="d420f127-9f9a-41e4-a539-fd4d21fe6ed9" style="width:50%" class="column"><p id="1ea4078c-4322-4f40-8fe4-a684c1820b39" class=""><span style="border-bottom:0.05em solid"><strong>Identification UI</strong></span></p><figure id="383d57ed-f768-42c9-a6e5-4fb0de2e729a" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2010.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2010.png"/></a></figure></div><div id="d1939ad6-9a86-4228-b88c-aca15c47f5d9" style="width:50%" class="column"><p id="a2e43a45-e570-4d39-9860-56f81ffb373a" class=""><span style="border-bottom:0.05em solid"><strong>Create Account UI</strong></span></p><figure id="eba6162f-aae0-41a7-a7f3-101fe5f4710e" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2011.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2011.png"/></a></figure></div></div><p id="3aae9a61-a443-488d-a442-fcbe96caeb99" class=""><span style="border-bottom:0.05em solid"><strong>Login UI</strong></span></p><div id="aa79f279-2c18-4bbe-86ff-72c52d2f331f" class="column-list"><div id="116da4c5-e3a3-4eb2-a4a4-c98142ebbcd9" style="width:50%" class="column"><figure id="da54fa29-8e25-4768-9ffd-931031710665" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8204.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8204.png"/></a></figure></div><div id="2fc8137e-8454-45a5-a405-6d55d027aa87" style="width:50%" class="column"><figure id="a8b3957a-e0c3-4cde-894c-5bd0ae81fab6" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8205.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8205.png"/></a></figure></div></div><h3 id="04334f07-5101-40a8-b3de-4eea01badd19" class="">Workflow</h3><figure id="4b6b72b0-ed78-4fb2-9625-6da950eac97d" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/scraps_processing_capture_workflow.png"><img style="width:2480px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/scraps_processing_capture_workflow.png"/></a></figure><h3 id="1d5644f5-b3d4-4658-9d63-79baf528b292" class="">AR Plane Detection</h3><p id="a458563e-e750-44ee-b379-1d9f362422fd" class="">The first feature that needed to be implemented was the AR plane detection feature. AR Foundation provides the AR session and XR origin game objects to initiate the AR implementations and run the AR loop. This loop basically runs every frame and executes the operations defined in the application. </p><figure id="48ba791a-7e2e-426a-9e4f-195d106a6e22" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_12.30.57_PM.png"><img style="width:880px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_12.30.57_PM.png"/></a></figure><p id="d51d7a02-5a53-4ee4-9af3-1d2d1e935f4e" class="">In my case, I wanted to activate the plane detection feature so I simply had to attach the AR plane manager component to the XR origin and set the parameters to my liking. By doing this, the loop automatically tries do detect plan in the scene and places a plane prefab to alert users of detected planes.</p><div id="ab2d9efb-6ae7-408c-8b4c-77f0b1f30d54" class="column-list"><div id="81cfbca3-192d-4d64-9bcd-c83666062b4d" style="width:50%" class="column"><figure id="51877b4c-797f-406f-8f41-bcc7d06cb154" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_12.31.19_PM.png"><img style="width:748px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_12.31.19_PM.png"/></a></figure><p id="39716138-f33d-4978-a698-8d9df24d31a6" class="">By allowing plane detection, we can recognize plane surfaces and get an area that is delimited by 3D points. Those 3D points are on a scale of one meter per units, so a there is 1 meter between points <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1,0,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span> and <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(2,0,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span> for example. This plane detection is the foundation we will need to evaluate distances between points on a surface.</p></div><div id="cd58f219-f04a-400f-9d1d-eea82b284217" style="width:50%" class="column"><figure id="5db84ff4-46a8-4923-a6d1-2ad8fcf7c611" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8206.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8206.png"/></a></figure></div></div><h3 id="c43b4d32-f019-4e62-bcfb-09a8442095a7" class="">Raycasting</h3><p id="7ac98f3b-cc27-4ae2-9df7-c1445beec554" class="">Now that there is plane detection, we could technically put points on the plane and evaluate the distance between them. That means it is possible put points along the outlines of the scrap and get a measurement of each line that creates this outline.</p><p id="7e57b4d5-6330-42cd-a2b2-83b658abb22e" class="">The problem is how do we position those points? There needs to be an easy way to let the user position points at a specific point. To unlock this, we can use the AR Raycast Manager component.</p><figure id="3a9dd148-3663-4ecc-8a6b-a2b32cf1faad" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_1.38.35_PM.png"><img style="width:750px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_1.38.35_PM.png"/></a></figure><p id="b637fbfe-e774-42cb-ab86-5710e80cedf2" class="">The Raycast Manager takes in a position on the screen and projects a straight line from the camera to the plane which corresponds to where the user clicked on the screen. It only returns a point if the user clicked on a part of the screen that is plane detected.</p><p id="e0b1c705-7877-4e04-83ef-b3ebfeb409df" class="">I have first tried this touch approach where the users taps where they want to put a point. It works well and has accurate results but the problem was that it was hard to pinpoint precise location. Since the area touched by the thumb is so large, it is almost randomly placed under the thumb.</p><p id="7ff88821-7735-4856-92c0-d1a0ff98b783" class="">In the <a href="https://www.youtube.com/watch?v=BsaPlgPn618&amp;t=1943s">measure app workshop</a>, they used the Raycast Manager but implemented it differently. Instead of using the touch position to determine the the position of the point, the Raycast was shot from the center of the screen at every frame and was checking where it hit.</p><pre id="0019e7be-c78e-450d-8e9c-7fcdd5a055be" class="code"><code>void SetRaycastManager()
+{
+		_hits = new List&lt;ARRaycastHit&gt;();
+		_raycastManager.Raycast(
+				new Vector2(Screen.width / 2, Screen.height / 2), // center of the screen
+		    _hits, // AR Raycast Hit Points
+		    TrackableType.PlaneWithinPolygon // Teel Raycast Manager to only intersects with detected planes
+		);
+}</code></pre><pre id="d26adfcf-3701-45a2-844d-d3a14cda5541" class="code"><code>// check if there was a hit with a plane
+void SetHasHit()
+{
+		// there could be multiple hits but in our case we only want the first one
+    if (_hits.Count &gt; 0) 
+    {
+        _hasHit = true;
+				// store position of the hit points
+        _hitPoint = _hits[0].pose.position;
+    }
+    else
+    {
+        _hasHit = false;
+    }
+}
+
+// we can update the reticle position with the hit point position and rotation
+void UpdateReticle()
+{
+																													// elevate above the plane
+    reticle.transform.position = _hits[0].pose.position + (Vector3.up * 0.005f);
+    reticle.transform.rotation = _hits[0].pose.rotation;
+}</code></pre><div id="d0aa7ffa-6c90-4cb3-8795-464cbb5b7a9c" class="column-list"><div id="96ff170a-44d7-4b73-8402-43c9264f872d" style="width:56.25%" class="column"><p id="0cbe9180-2269-4504-ac73-bfbed7630b9b" class="">Using the hitpoint, they would put a “reticle” to show where the Raycast hit. Using this technique, the user always knows where the Raycast hits. </p><p id="b2ae3cbc-6989-4cd8-b97d-1ce53820382a" class="">I noticed that it was much more precise the move the device to position the reticle than to use the thumb to shoot the Raycast. The user could see where the point would be in real time and simply tap the screen to create an outline points.</p></div><div id="4d27dd29-d953-4103-9e1c-eeb4024218bd" style="width:43.75%" class="column"><figure id="7dfa8f54-1e6d-4aa5-b979-1c795c3dfd91" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8207.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8207.png"/></a></figure></div></div><p id="9c4d4771-97ae-4969-b678-4f6d464fc8b3" class="">
+</p><h3 id="7d88ab0f-db73-4865-b435-066bb7ff3209" class="">Distance between points</h3><p id="895b85e6-3757-4e57-85c7-45b54ff64f51" class="">The formula to find the distance between two 3D points <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></span><span>﻿</span></span> and <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span></span><span>﻿</span></span> is</p><figure id="5b2f8aa2-5a27-4c67-a60e-2356588292fb" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>A</mi><mi>B</mi><mo>=</mo><msqrt><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>−</mo><msub><mi>y</mi><mn>0</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mn>1</mn></msub><mo>−</mo><msub><mi>z</mi><mn>0</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">AB = \sqrt{(x_1-x_0)^2+(y_1-y_0)^2+(z_1-z_0)^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.2561em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9839em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-2.9439em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2561em;"><span></span></span></span></span></span></span></span></span></span></div></figure><p id="3da0a49f-9ea4-4e7d-b352-dc5d830c17e7" class="">Fortunately, Unity already implements this in its standard Vector library so we don’t have to do it ourselves.</p><pre id="b44535be-297b-4d2f-8008-5418e57c823a" class="code"><code>public static void calculateDistance()
+{
+		// A and B are vectors
+		Vector3.Distance(A, B)
+}
+
+public static float Distance(Vector3 a, Vector3 b)
+{
+  float num1 = a.x - b.x;
+  float num2 = a.y - b.y;
+  float num3 = a.z - b.z;
+  return (float) Math.Sqrt((double) num1 * (double) num1 + (double) num2 * (double) num2 + (double) num3 * (double) num3);
+}</code></pre><p id="21531d40-1854-4a1c-bc44-c6dbfbe38ba6" class="">Since we can assume that the distance between points is equivalent to 1 meter per units, then the distance between two points on the plane will reflect a real distance in the real space. Then we simply need to use the Raycast manager and the distance formula to start real digital measurements on the plane.</p><figure id="90de5a0f-daa7-45bf-ac4c-6f21a6dfe26b" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2012.png"><img style="width:1152px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2012.png"/></a></figure><h3 id="7b79d36b-3bed-4140-a2a7-3eb01a73b6e5" class="">Outline Drawing Integration</h3><p id="e395e7f6-f445-4370-88d3-915973a547b8" class="">Using the Raycast Manager, the Plane Detection and the distance formula, we can start integrating them together to create an outline drawing feature.</p><p id="d66d0d21-6903-46cd-9fb7-6b97cd1ba475" class=""><span style="border-bottom:0.05em solid"><strong>Points Positioning</strong></span></p><p id="9b9feb21-5b6b-4d05-bc0f-f2866eaecc3d" class="">The first thing that was integrated was to position a point at the reticle position when the user taps the screen. We can use the the even managing system in unity to detect the frame the user touches the screen.</p><pre id="78906dbf-a25a-4623-a389-300914f268d4" class="code"><code>void CheckHitPoints()
+    {
+        // If the user is touching the screen and make sure it only happens when we first touch the screen
+        if (!EventSystem.current.IsPointerOverGameObject() &amp;&amp;
+            Input.touchCount &gt; 0 &amp;&amp;
+            Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            // Create a new sphere to place into space as a point
+            GameObject point = CreatePoint();
+
+            // Set point position depending on anchor mode and current hit position
+            SetPointPosition(point);
+
+            // If it is the first point, identify as the anchor
+            if (scrapPoints.Count == 0)
+            {
+                _anchor = point;
+            }
+
+            // Add it to the collection of points
+            scrapPoints.Add(point);
+        }
+    }</code></pre><figure id="db4cb4a2-e780-435c-8272-be1763aafeea" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2013.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2013.png"/></a></figure><p id="eff67df5-56e3-4a11-8ee4-319146b4f25c" class=""><span style="border-bottom:0.05em solid"><strong>Close Outline Loop </strong></span></p><p id="1eeb85c1-8a4e-4bd3-a7d6-e5ce7f206a98" class="">Since we want to draw outlines, we need some kind of way to evaluate if the outline needs to be closed. We can first store the position of the point that was created. At each frame, we check if the reticle is close to that point. If it is close enough, we can suggest to the user close the loop by locking the reticle onto the point. This is very simple to implement. I called the zone close to the first point the “anchor zone”.</p><pre id="eec85b5d-e3d1-42cc-9a70-46052076e9ed" class="code"><code>void CheckIfInAnchorZone()
+{
+    // There needs to be at least 2 points set to anchor to the initial point
+    if (scrapPoints.Count &lt; 3)
+    {
+        return;
+    }
+																																									 // epsilon
+    if (Vector3.Distance(reticle.transform.position, _anchor.transform.position) &lt; 0.015)
+    {
+        SetReticleToAnchorMode();
+    }
+		// If in anchor mode and not close enough to anchor, disable the anchor mode and reset reticle
+    else if (_inAnchorMode) 
+    {
+        SetReticleToCaptureMode();
+    }
+}
+
+void SetReticleToAnchorMode()
+{
+		// move reticle to the position of the point
+    reticle.transform.position = _anchor.transform.position + (Vector3.up * 0.005f);
+		// change the color to alert user
+    reticle.GetComponent&lt;MeshRenderer&gt;().material.color = Color.blue;
+		// change the state of the capture
+    _inAnchorMode = true;
+}</code></pre><div id="e5c46f3b-c26b-43ca-aaeb-e89553db069f" class="column-list"><div id="21f65133-dbc5-4d56-b2a9-0dfb2353b84f" style="width:50%" class="column"><figure id="2248ec07-cd96-4437-b69e-7284e0fb9bb8" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2014.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2014.png"/></a></figure></div><div id="4a617fbd-7a54-4108-a788-4cf88162e221" style="width:50%" class="column"><figure id="73916174-bb45-4b6e-9def-50d674a50983" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2015.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2015.png"/></a></figure></div></div><p id="1e1e1fdd-dfd1-47a0-ba87-1aa22e0ba1b5" class=""><span style="border-bottom:0.05em solid"><strong>Lines drawing</strong></span></p><p id="a64d8269-a479-4f66-98f1-9fb0a2128d10" class="">We have all the information we need to draw lines between each points and indicate the distances between them. We can iterate over all created points, calculate the distances between them and render a line between the two with a text in the middle that displays the distance.</p><pre id="c5938398-0cdf-4bfc-ad94-24a1d9accc91" class="code"><code>void DrawDistanceLines()
+{
+    // Drawing the lines as the points are created
+    if (scrapPoints.Count &gt;= _scrapPointsLines.Count + 2)
+    {
+        // Position of the line
+        int position = _scrapPointsLines.Count;
+
+        // Get the 3D position of the scrap points
+        Vector3 point1 = scrapPoints[scrapPoints.Count - 1].transform.position;
+        Vector3 point2 = scrapPoints[scrapPoints.Count - 2].transform.position;
+
+        // Distance between the 2 points
+        float distance = Vector3.Distance(point1, point2);
+
+        // Set up the game object for the distance lines
+        GameObject distanceLineObject = new GameObject(&quot;Distance Line #&quot; + position);
+
+        // Set up the rendered for the lines and link it to the game object
+        LineRenderer distanceLine = distanceLineObject.AddComponent&lt;LineRenderer&gt;();
+
+        // Make sure there is a material attached
+        distanceLine.material = new Material(Shader.Find(&quot;Sprites/Default&quot;));
+        distanceLine.positionCount = 2;
+        distanceLine.startWidth = 0.001f;
+        distanceLine.endWidth = 0.001f;
+        distanceLine.startColor = Color.white; // Set the start color of the line
+        distanceLine.endColor = Color.white; // Set the end color of the line
+        distanceLine.SetPosition(0, point1);
+        distanceLine.SetPosition(1, point2);
+        _scrapPointsLines.Add(distanceLineObject);
+
+        // Put text along the line
+        WriteDistanceOnLine(point1, point2, distance, position);
+    }
+}</code></pre><pre id="708d9cbf-d3bf-4697-8772-d9d26b40b95c" class="code"><code>void WriteDistanceOnLine(Vector3 point1, Vector3 point2, float distance, int position)
+{
+    // Init the game object and the text mesh
+    GameObject distanceTextObject = new GameObject(&quot;Distance Text #&quot; + position);
+    TextMeshPro distanceTextMesh = distanceTextObject.AddComponent&lt;TextMeshPro&gt;();
+
+    // Convert the distance into centimeters
+    float distanceInCM = distance * 100;
+    string textValue = (distanceInCM.ToString(&quot;0.00&quot;) + &quot;cm&quot;);
+
+    // Set up the text mesh
+    distanceTextMesh.text = textValue;
+    distanceTextMesh.fontSize = 0.05f;
+    distanceTextMesh.color = Color.black;
+    distanceTextMesh.alignment = TextAlignmentOptions.Center;
+    distanceTextMesh.transform.position = ((point1 + point2) / 2f) + _yOffset;
+    distanceTextMesh.transform.LookAt(phoneCamera.transform);
+    distanceTextMesh.transform.Rotate(new Vector3(0, 180, 0));
+    _distanceTexts.Add(distanceTextObject);
+}</code></pre><figure id="12488757-0482-4a39-8179-d2bf99a464ce" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2016.png"><img style="width:1165px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2016.png"/></a></figure><h3 id="08d4d554-0718-42ec-83bd-c2d2b4badbdb" class="">Taking a Screenshot</h3><p id="47f333e2-6930-4db7-8d06-a3a8417d63c6" class="">To take a screenshot, I needed to be a little creative. There are modules to save screenshots locally which I could then send to the <a href="https://www.notion.so/Scraps-Processing-API-892b8bd91f204a9788fab2544dee732c?pvs=21"><span class="icon">📋</span>Scraps Processing API</a> . But, due to the constraints of development build and access to the phone’s static storage, my options are limited when writing and reading files on the phone. Instead, I can transform the pixel values of the screen into a Unity texture object;</p><pre id="b90c58c6-d9ff-44ff-9514-cf738edd3b2a" class="code"><code>ui.SetActive(false);
+
+yield return new WaitForEndOfFrame(); 
+Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+texture.Apply();</code></pre><p id="1e4e6ac1-d699-41fe-af3b-43824d958c8d" class="">Then, we can encode the texture’s data into a PNG format directly into the phone’s memory instead of writing it locally. Using this data, we can directly send it to the API and decode it on the server instead of the phone.</p><pre id="949ec08e-2d18-4580-b5eb-77ee414c492d" class="code"><code>byte[] imageBytes = texture.EncodeToPNG();
+yield return new WaitForSeconds(1); // Wait for the screenshot to be saved
+
+WWWForm form = new WWWForm();
+form.AddBinaryData(&quot;file&quot;, imageBytes, timestamp + &quot;.png&quot;, &quot;image/png&quot;);
+
+UnityWebRequest request = UnityWebRequest.Post(serverURL, form);
+yield return request.SendWebRequest();
+
+if (request.result != UnityWebRequest.Result.Success)
+{
+    Debug.LogError(&quot;Error uploading image: &quot; + request.error);
+}
+else
+{
+    Debug.Log(&quot;Image uploaded successfully!&quot;);
+}
+ui.SetActive(true);</code></pre><p id="4805a265-a231-4e91-a25a-1ef306d3d466" class="">As a convention, the image is set to the timestamp when the screenshot was taken. </p><div id="aed07fdb-80de-4355-929d-92dd981ee699" class="column-list"><div id="df44a455-0c00-4b28-8300-2498819532df" style="width:50%" class="column"><figure id="91ea93fb-069e-473d-829b-923e3e7ebeb0" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2017.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2017.png"/></a></figure></div><div id="cb8e4e51-c76a-4135-b103-d5297db0af6e" style="width:50%" class="column"><figure id="aacd959b-8969-4c96-a94f-c3185984d9e4" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2018.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2018.png"/></a></figure></div></div><p id="be25bbff-db9e-48ee-95f5-54966a7b5133" class="">Some further processing needs to be done to store the image in a way that can be reference later. See the section to get more information about how the image is processed.</p><h3 id="9e1ef8be-727d-469b-b4f9-4e1b88127ef8" class="">Sending Scraps Data</h3><div id="d7586921-c535-4e0c-a6f1-e6ca6407bf81" class="column-list"><div id="841cc51e-aa13-40e6-a4dd-5c02ea5a8a8a" style="width:50%" class="column"><p id="4c1ea1c9-13db-443c-aecf-3cc39781221f" class="">Now that we have the data, how do send that data to the database. To see how the data is handled, check the <a href="https://www.notion.so/Scraps-Processing-API-892b8bd91f204a9788fab2544dee732c?pvs=21"><span class="icon">📋</span>Scraps Processing API</a> documentation. In the scanner, we simply have to package the data we collected and make a request to the API. The scrap dimensions, location, and picture of the scrap have been recorded.</p><p id="93f54819-8778-4026-9bf1-21daaca40aa7" class="">There are information the we need to gather manually. Like the textile class of the scrap, the textile type and some notes about them to help users get a grasp of the scrap. A register form appears and asks the user about this information.</p><p id="527c6060-c270-4874-b14a-9d5008afa64e" class="">Once everything is written down, the user presses done to send that information.</p><p id="d2a55811-f1e9-486f-beed-d942f667c972" class="">The image is already stored in a database so we simply need to include the image name.</p><p id="36a5ce54-88b7-4133-9c8d-b8cb17ef2368" class="">To see all the details about how the the request was implemented see the  section of the API.</p></div><div id="99a1ea03-8784-4e1c-98ab-4882c4f73d90" style="width:50%" class="column"><figure id="38d7b73c-1757-4305-9304-c4b1187d7338" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8214.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8214.png"/></a></figure></div></div><p id="ae86fb8e-c063-4be9-b8ff-b8563f9a1956" class="">I am using Unity’s request library to send the data and receive the response from the API.</p><pre id="60059e62-4331-4c54-9ca2-746f8d7907fe" class="code"><code>void SubmitScrap()
+{
+    _displayMessages = false;
+    // Extracting information
+    string enteredScrapNotes = scrapNotes.text;
+    string selectedTextileClass = textileClass.options[textileClass.value].text;
+    string selectedTextileType = textileType.options[textileType.value].text;
+
+    string baseRequest =
+        &quot;https://scraps-processing-api-delicate-pond-5077.fly.dev/scraps?textile-class={0}&amp;textile-type={1}&amp;color={2}&amp;owner={3}&amp;note=&#x27;{4}&#x27;&amp;dimensions={5}&amp;image={6}&quot;;
+    string requestAddress = String.Format(
+        baseRequest,
+        selectedTextileClass,
+        selectedTextileType,
+        scrapColor,
+        user.userID,
+        enteredScrapNotes,
+        _scrapPointsCollection,
+        _timestamp
+    );
+    if (useGeolocationComponent)
+    {
+        string selectedUseGeolocation = &quot;[&quot; + location.latitude.ToString().Replace(&quot;,&quot;, &quot;.&quot;) + &quot;,&quot; +
+                                        location.longitude.ToString().Replace(&quot;,&quot;, &quot;.&quot;) + &quot;]&quot;;
+        requestAddress += (&quot;&amp;geolocation=&quot; + selectedUseGeolocation);
+    }
+
+    UnityWebRequest request = UnityWebRequest.Put(requestAddress, &quot;&quot;);
+
+    var operation = request.SendWebRequest();
+    while (!operation.isDone)
+    {
+    }
+
+    string scrapInfo;
+
+    // Check for errors
+    if (request.responseCode == 204)
+    {
+        // TODO handle errors
+    }
+    else
+    {
+        // Request successful, get the response
+        scrapInfo = request.downloadHandler.text;
+        string pattern = &quot;\&quot;id\&quot;\\s*:\\s*\&quot;([^\&quot;]*)\&quot;&quot;;
+        MatchCollection matches = Regex.Matches(scrapInfo, pattern);
+        ActivateScanNewScrapsInterface(matches[0].Groups[1].Value);
+    }
+
+    DeactivateRegisterForm();
+}</code></pre><h3 id="d0a7b390-ee76-4c6f-956d-23ecd7dbc28a" class="">Identification</h3><div id="e0009a9d-f40f-4da6-9331-e9f2d4c33e0f" class="column-list"><div id="d041a890-b131-47f7-9559-b29633ca4168" style="width:62.5%" class="column"><p id="0e798722-d779-4db8-998e-12b57448d09f" class="">The identification of the scrap is generated by the API. The ID of the scrap is displayed so it can be easily identified later in the process.</p><p id="49b8c2e2-4385-4cf4-a9e8-e177fb8cedb0" class="">From there, you can continue scanning other scraps or simply exit the application.</p></div><div id="d18e355b-e668-4948-aa4d-28a3679fb209" style="width:37.5%" class="column"><figure id="414e638a-8cb0-4138-b342-602a18c52e2e" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8215.png"><img style="width:192px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8215.png"/></a></figure></div></div><h2 id="5ff4d7a6-9033-4f58-8152-af67c7eeaa5e" class="">Live Demo</h2><h3 id="020825dd-f070-49b9-8482-29600a7e4b7a" class="">Create an account and register a scrap</h3><figure id="5a29a289-5363-43b2-8afc-e220e7ad3119"><div class="source"><a href="https://youtu.be/Vu44FiwVsUE">https://youtu.be/Vu44FiwVsUE</a></div></figure><h3 id="bafdca9c-9cf4-486e-b134-bb4396a452a8" class="">Login and register a scrap</h3><figure id="e00bcfd9-e0ad-4e3b-8be8-87aaffdf379b"><div class="source"><a href="https://www.youtube.com/watch?v=7Yo_2uCGpYs">https://www.youtube.com/watch?v=7Yo_2uCGpYs</a></div></figure><h2 id="6aee66c9-0fa3-4004-91dd-99723f6181ce" class="">Non-implemented Features</h2><h3 id="fe8ffd55-0018-4864-b43a-325cbc82a77a" class="">Color detection</h3><p id="721c10b6-0b10-48aa-8fca-600a26436b88" class="">I wanted to include an automatic color detection algorithm in the scanner. I made some attempts to cut the photos using the points. The problem arose when I was trying to map the 3D points to 2D coordinates on the image. I initially thought it would be easier but after starting to tackle the problem, I realized it was much more complex than I thought. I would have to use computer vision tools like <a href="https://opencv.org/">OpenCV</a> and make integration with Unity or my API. In the timeframe I had, I decided to focus my energy on other aspects which would improve the experience of using the application more.</p><h3 id="e9c2033b-6031-4d53-8938-0188afbe5286" class="">Integration with React Native</h3><p id="9c362e28-6a35-48cf-9013-5d6202d1365e" class="">The application is still very much at a prototype level so I was still comfortable presenting the scanner and interface as two different applications. I would be present to demonstrate the application so it was not a super big deal. I would have to put a lot of effort to make those work together and would have lost time to work on more essential features. </p><h1 id="6b8ca399-28b1-4f64-b374-c2a927221bb1" class="">Scraps Processing API Development</h1><h2 id="49257517-3b47-4207-b262-bc47e44d43dc" class="">Repository</h2><figure id="cc818107-9f22-4d92-bfaa-929adc3a26d1"><div class="source">https://github.com/ArnaudJalbert/scraps_processing_api</div></figure><h2 id="8823cf63-ba98-4ba0-b0de-43b114631df9" class="">Introduction</h2><p id="a2eed8e6-6ef8-40ac-a3c4-c464f7f7492d" class="">The API was made to make the communcations between the <a href="https://www.notion.so/Scraps-Processing-Scanner-d047ea05d11a429ead4a9828ae6e394d?pvs=21"><span class="icon">🔬</span>Scraps Processing Scanner</a> and the <a href="https://www.notion.so/Scraps-Processing-Interface-1b7452d3a47d4d45bde891a8a27fe983?pvs=21"><span class="icon">🔖</span>Scraps Processing Interface</a>. It is the only modules that interact directly with the database and handles all the data manipulation. It uses MongoDB to store the data and is implemented with Flask. It is invisible to the user but is used extensively in both applications.</p><h2 id="6ce617ad-207b-4a21-bca8-f8db18a99ae4" class="">Technology</h2><h3 id="e3514116-5573-4799-a578-df32aa0741ed" class="">Python</h3><p id="a0cb106b-6582-4baf-bb70-597aef78bce2" class="">I decided to implement the API in python. I already have a lot of experience with Python so I was comfortable using it. There are a lot of API framework available, lots of libraries, and a great amount of documentation and tutorials on python tools. It is also an very fast language to write and the higher level style of the language make it very intuitive.</p><h3 id="459b99c6-5cc7-405d-a421-b9ea15b29b38" class="">Flask</h3><p id="7162e3ee-e2bb-46b2-a555-cbd3f499f4ac" class="">I decided to use <a href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a> to build the API. I used Flask because it is a very minimalist and easy to use  framework which was perfect for what I wanted. It also required almost no setup time to get started which was perfect. The other alternatives were Django or FastAPI but Flask seemed to fit my needs better.</p><h3 id="0c1404bc-4b2e-493e-9016-ce5f08dd99cc" class="">MongoDB</h3><p id="94b4218e-c1cb-428c-8cd0-4be4b6cd340a" class="">I decided to use MongoDB as my database. I liked Mongo because it easy to setup in python. Mongo provides a python library to easily access the database. The database is also NoSQL so I can easily change the schemas of my data along the way without having to create new tables or restart again. There is also a very nice user interface to see your data and validates your requests and queries.</p><h3 id="7cdad988-eec1-4a78-98ac-cbd169d272dd" class="">Fly.io</h3><p id="6d9668ab-5aa3-4567-9b22-f3c91a2e9282" class="">I decided to use <a href="http://Fly.io">Fly.io</a> to host the API. It is a free service for hobbyists and small projects. There is already an integration with Flask directly so there is very little work for me to do to deploy my application. It also provides an URL and a nice dashboard to monitor activity.</p><h2 id="6cfee8da-be82-4511-8322-71a2d2781b0d" class="">Features</h2><h3 id="53241aab-6459-4ca6-9635-d81c5cba5580" class="">Database Director</h3><p id="6d7247f7-26fa-4788-8b22-4ccd78e4dcda" class="">To facilitate the access to the Mongo database, I implemented a <a href="https://refactoring.guru/design-patterns/builder"><strong>builder pattern</strong></a><strong> </strong>to simplify the access to the database client. This gives a director to which we simply have to pass the name of the database we need to access and handle all the implementation. To get a new access to the database we simply need to use the director object.</p><pre id="05b3382d-aeab-4238-a3f8-c90bacfb09b0" class="code"><code>from database_director import Director
+
+SCRAPS_PROCESSING_DATABASE = &quot;scraps_processing&quot;
+SCRAPS_PROCESSING_TEST_DATABASE = &quot;scraps_processing_test&quot;
+
+database = Director().create_database(SCRAPS_PROCESSING_DATABASE)
+# can also use the test database to not corrupt the real database when making tests
+test_database = Director().create_database(SCRAPS_PROCESSING_TEST_DATABASE)
+
+# then we can use the mongo client
+users = database.get_collection(&quot;users&quot;).find()  # get all users</code></pre><h3 id="5033f141-6186-4c2b-9418-f9890712f598" class="">Create Scraps</h3><figure id="c7c7595a-b32d-40e6-936b-562d2006a0f2" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/create_scrap_v001.png"><img style="width:3844px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/create_scrap_v001.png"/></a></figure><p id="b062903e-b294-4a03-ac36-91a2ff533b95" class=""><span style="border-bottom:0.05em solid"><strong>Process</strong></span></p><p id="837130a4-aed7-4a04-a07a-62477c1010a7" class="">The API provides an endpoint to create a scrap. To execute properly, it needs to have the right URL parameters with the correct information. A valid request would look like</p><blockquote id="29f621e8-c65d-4765-9470-fb43f253570a" class=""><em>url/scraps?textile-class={textile_class}&amp;textile-type={textile_type}&amp;color={color}&amp;owner={owner}&amp;geolocation=[geolocation]&amp;note={note}&amp;dimensions=[dimension]&amp;image={image_path}</em></blockquote><p id="8265c96f-737d-49c0-9ee5-93f48a0aa9e9" class="">The API takes care of parsing the URL and first verifies to validate the data and ensure it fits the data type. Then it converts it to a python object that can then be processed pythonically.</p><pre id="7f217041-3c2a-4349-a410-db245130de08" class="code"><code>import numpy as np
+
+from colour import Color
+from dataclasses import dataclass
+from typing import List, Tuple
+
+# the scrap entity with all the information
+@dataclass
+class Scrap:
+    color: Color
+    fabric_class: str  # synthetic, natural or blend
+    dimensions: List[np.array]
+    owner: str
+    image_path: str
+    width: float  # calculated with dimensions
+    height: float  # calculated with dimensions
+    id: str = None  # generated in the API
+    geolocation: Tuple[float, float] = None
+    fabric_type: str = None
+    note: str = None</code></pre><p id="ea43027b-215e-4292-a105-ea9cebe8a98f" class="">Most of the data just needs to be converted in the right type or some basic parsing needs to be done. There is only one piece of data that is heavily processed: the dimensions. The problem with the current dimensions is that they are in 3D and they are not currently aligned on an axis. Hence, it is hard to transform that data into a 2D projection where the outline is represented by 2D points. What we need to do is to transform all the points so that they eventually line up on a certain axis, pretty much converting the 3d points to a plane.</p><figure id="70889b1d-bac0-475a-9e8c-fef0536f4043" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_4.20.38_PM.png"><img style="width:2080px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_4.20.38_PM.png"/></a></figure><figure id="d6fbe0c5-28bd-4b3d-b866-182e21c90aa8" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_4.21.02_PM.png"><img style="width:1544px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_4.21.02_PM.png"/></a></figure><p id="13ce09c1-7d96-4a60-916a-14583d4718c7" class="">We can assume that the points are plane-like, meaning it is easy to estimate the equation of a plane from those points. Hence, we can use the <a href="https://stackoverflow.com/questions/1400213/3d-least-squares-plane">least squares regression plane equation</a> with the points available to estimate the plane equation. This allows us to find a plane that approximately passes through all the points. Since are points are positioned along a plane in Unity, the approximation is very precise.</p><figure id="ee17be71-fab5-4d9f-a860-5beb9fc60604" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_4.25.41_PM.png"><img style="width:1680px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_4.25.41_PM.png"/></a></figure><p id="9dfbbc95-b218-4a00-a91e-9a3d749f3334" class="">Once we have the plane equation, we can find the transformation such that the plane is aligned in the z axis. We can apply this transformation to all the points and all the points will be aligned on the z axis.</p><figure id="ad734570-973b-4ad8-b25e-cf1795041094" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_9.08.09_PM.png"><img style="width:963px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_9.08.09_PM.png"/></a></figure><figure id="c4690b28-834a-439a-b3f1-3d55c0886581" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_9.08.33_PM.png"><img style="width:931px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_9.08.33_PM.png"/></a></figure><p id="2351ea62-018e-4d58-93c3-19ca6aee9f2e" class="">Once everything is lined up on the z axis, we can drop the coordinates on the z axis and simply have a 2D shape</p><p id="56711d08-26b2-43cd-bd3c-27479f321c25" class="">The last transformation to do is to move the shape closer to the origin <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span>. We can do it by finding the maximum width and height of the shape. The algorithm to find it is:</p><figure id="d8777ea2-9870-4945-baef-1630f2b1fda5" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>X</mi><mo>=</mo><mtext>Set of all the x coordinates</mtext><mspace linebreak="newline"></mspace><mi>Y</mi><mo>=</mo><mtext>Set of all the y coordinates</mtext><mspace linebreak="newline"></mspace><mi>W</mi><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>−</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>H</mi><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>−</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X=\text{Set of all the x coordinates}\\Y=\text{Set of all the y coordinates}\\W = max(X) -min(Y)\\H=max(Y)-min(Y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">Set of all the x coordinates</span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Set of all the y coordinates</span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ma</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">min</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ma</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">min</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span></span></span></span></span></div></figure><div id="b176cb05-745b-4251-810d-e4010db06093" class="column-list"><div id="4bd8470a-1659-421d-96b8-597c94b2fb3e" style="width:50%" class="column"><p id="30cced21-2962-4077-acc2-1387cca24a45" class="">Once we know the width and the height, we can find the midpoint of the shape with the following equations.</p><figure id="66af5759-9100-4123-9cf1-fb39cb361f6c" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi><mi>X</mi><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><mo stretchy="false">(</mo><mi>W</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>m</mi><mi>i</mi><mi>d</mi><mi>Y</mi><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>−</mo><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">midX = max(x)-(W/2)\\midY=min(Y)-(H/2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">mi</span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ma</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mord">/2</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">mi</span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">min</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord">/2</span><span class="mclose">)</span></span></span></span></span></div></figure></div><div id="015da251-e975-4423-9d62-c94acd484814" style="width:50%" class="column"><figure id="ff7627b0-e218-4a28-8145-c77b373e6c76" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2019.png"><img style="width:740px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2019.png"/></a></figure></div></div><div id="3d082adf-f695-473d-aadc-3bbdaf3602a5" class="column-list"><div id="40d77d77-dbc0-4a21-981a-14b22dc12b9f" style="width:50%" class="column"><p id="88c0e59b-94a0-4c4d-8828-ccf3146fee08" class="">Then for all points in the shape, we can substract <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">midX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">mi</span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span></span><span>﻿</span></span> from the x coordinates and <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi><mi>Y</mi></mrow><annotation encoding="application/x-tex">midY</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">mi</span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span></span></span><span>﻿</span></span> from the y coordinates to center the shape in the middle.</p><p id="b7f3ca89-4d77-4dc8-af2f-0b16e3f50bca" class="">Moving the shape to the center will help streamline the process of drawing the scrap later in the process.</p></div><div id="feac21f5-7f46-46af-a22e-faeab0fb64c8" style="width:50%" class="column"><figure id="3395c689-b1d2-44bb-b73b-62fc373b45af" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_9.33.11_PM.png"><img style="width:665px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Screenshot_2023-12-07_at_9.33.11_PM.png"/></a></figure></div></div><h3 id="9791b409-5235-44b0-ad81-b37b709bb39f" class="">Get Scraps</h3><p id="5001044f-126e-4f58-9b7c-3f5576c48996" class="">I created an endpoint to retrieve the registered scraps. Since the scraps were correctly stored and transform at the entry point of the API, this requests becomes very easy to implement. We simply need to retrieve all the Scraps records from the Mongo database. To do so we can even use <strong><a href="https://pymongo.readthedocs.io/en/stable/">Mongo’s python interface</a></strong>.</p><pre id="a3a54ec9-568f-4152-8045-2bc114497b23" class="code"><code>from database_director import Director, SCRAPS_COLLECTION
+
+
+database = Director().create_database()  # returns real database by default
+
+# returns all scraps in database
+scraps = list(database.get_collection(SCRAPS_COLLECTION).find())</code></pre><figure id="390dc7cc-3065-42dd-b138-dbf8122f734e" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/get_scrap_v001.png"><img style="width:2084px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/get_scrap_v001.png"/></a></figure><h3 id="b0041ef0-2953-426d-a8d6-af93915aef6b" class="">Filter Scraps</h3><p id="3866a1c9-61d8-4b50-b51f-2e0b74411f17" class="">We can also add filters to the URL arguments to only get a subset of the scraps instead of all the scraps. This can be useful when filtering the scraps in the interface. To limit the code usage, I have implemented requests so that they match Mongo’s keys, that way we can use the request directly as a filter.</p><pre id="05cc44cd-9760-48ae-8623-98350b7a8089" class="code"><code>@app.get(&quot;/scraps&quot;)
+def get_scraps():
+		filter = dict(request.args)
+
+		# dict(request.args) gives us a dict with key-values pair from the url arguments
+		# filter -&gt; {&quot;textile_type&quot;: &quot;natural&quot;, &quot;owner&quot;: &quot;arn&quot;}
+		
+		scraps = list(database.get_collection(SCRAPS_COLLECTION).find(filter))</code></pre><h3 id="97572381-9c8c-49db-b457-47c880b36176" class="">Get scraps within a certain distance</h3><p id="acd0863d-33ac-417c-abb4-90c20cbcf438" class="">We can filter scraps depending on the location where they were registered. That information is already available in the Scrap’s record. To filter, we simply need to current location of the user which we can include in the request as well as the max distance.</p><p id="952a56d4-96df-4f95-8273-39091740b5f1" class="">Then, we can calculate the distance between the two coordinates and check against the max distance provided. This can be done with the <strong><a href="https://geopy.readthedocs.io/en/stable/">geopy</a></strong> package</p><pre id="3928d06c-a9dd-40da-841e-7dc6fb164dff" class="code"><code>from geopy import distance
+
+for scrap in scraps:
+		# get the user&#x27;s location
+    origin = (float(url_args[&quot;latitude&quot;]), float(url_args[&quot;longitude&quot;]))
+		# the scrap&#x27;s location
+    scrap_location = (
+        float(scrap[&quot;geolocation&quot;][0]),
+        float(scrap[&quot;geolocation&quot;][1]),
+    )
+		# distance between the two
+    scrap_distance = distance.distance(origin, scrap_location).km
+
+    if scrap_distance &lt;= float(url_args[&quot;distance&quot;]):
+        close_scraps.append(scrap)</code></pre><p id="88779798-dc06-4292-8d0f-ce489059fa7c" class="">
+</p><h3 id="cea036b0-05af-4196-8fdb-d12a965099c5" class="">Get Textile Types and Classes</h3><p id="da975050-b739-41eb-8711-b55309c42114" class="">To keep a constant record of the available textile types and classes, I decided to store them in Mongo so they can be referenced from a central point. The different applications of the project can get a list of them with the endpoints:</p><ul id="56058004-76b4-4000-814a-dd5f6110f52f" class="bulleted-list"><li style="list-style-type:disc"><strong><span style="border-bottom:0.05em solid">url/textile-classes</span></strong></li></ul><ul id="32cbcb6b-e9e7-48ee-a8de-b5c4db3153e5" class="bulleted-list"><li style="list-style-type:disc"><strong><span style="border-bottom:0.05em solid">url/textile-types</span></strong></li></ul><p id="bcdbb1e3-2ada-423a-bf75-b4c1b28a3718" class="">In the API, I simply fetch them from Mongo directly and return a list of them.</p><pre id="629ce214-8f27-407f-83bf-4e958b8d1a7e" class="code"><code>@app.get(&quot;/textile-classes&quot;)
+def get_textile_classes():
+    &quot;&quot;&quot;
+    Get the current textile classes that are available.
+    Returns:
+        str: json formatted string of all textile classes
+    &quot;&quot;&quot;
+    try:
+        textile_classes_dict = list(
+            database.get_collection(TEXTILE_CLASSES_COLLECTION).find(
+                {}, {&quot;textile_class&quot;: 1, &quot;_id&quot;: 0}
+            )
+        )
+    except Exception as exception:
+        return str(exception), 204
+
+    textile_classes = list()
+
+    # get only the values not the whole dict
+    for textile_class in textile_classes_dict:
+        value = textile_class[&quot;textile_class&quot;]
+        textile_classes.append(value)
+
+    return dumps(textile_classes), 200</code></pre><p id="74e855b9-d3eb-4e9f-a4e0-c0b2c919ac56" class="">We can also filter the types by textile classes if needed.</p><pre id="98d9f77f-4d15-4e57-8064-1957df533e0d" class="code"><code>@app.get(&quot;/textile-types&quot;)
+def get_textile_types(textile_class=None):
+    &quot;&quot;&quot;
+    Get the current textile types that are available.
+    Returns:
+        str: json formatted string of all textile classes
+    &quot;&quot;&quot;
+    try:
+        if textile_class:
+            textile_filter = {&quot;textile_class&quot;: textile_class}
+        else:
+            textile_filter = {}
+        textile_types_dict = list(
+            database.get_collection(TEXTILE_TYPES_COLLECTION).find(
+                textile_filter, {&quot;textile_type&quot;: 1, &quot;_id&quot;: 0}
+            )
+        )
+    except Exception as exception:
+        return str(exception), 204
+    textile_types = list()
+
+    # get only the values not the whole dict
+    for textile_type in textile_types_dict:
+        value = textile_type[&quot;textile_type&quot;]
+        textile_types.append(value)
+
+    return dumps(textile_types), 200</code></pre><h3 id="9893103f-3943-417d-9156-17e0853578f9" class="">Create/Login into an Account</h3><p id="b84475e9-8318-4bb2-a69d-f82ee7b444ac" class="">To create or retrieve  users, I also created endpoints to manage all this so it does not have to be handled by the interface or the scanner. I also represented the accounts with a python object to more easily manipulate them in the API.</p><pre id="239ed3e9-49e1-4bb9-98eb-5d86bcfcdf62" class="code"><code>from dataclasses import dataclass
+
+
+@dataclass
+class User:
+    user_id: str
+    username: str
+    email: str
+    instagram: str
+    password: str = None
+    description: str = None</code></pre><p id="0fcf9f40-89f3-4e12-8064-7677d69d6f4f" class="">Some of the attributes are not used yet but could be implemented in the future like the description or the password. I did not want to have a password feature since I have little knowledge about encrypting and cybersecurity and felt it would be easier to use the app in a demo context without.</p><p id="82c476f1-24f5-4850-9d5c-4752a9da3a92" class="">Most of the information is provided in the request, only the ID is generated by the API. It uses the username provided to create the unique ID so that it’s familiar to the user and easy to write in order to identify the scraps. There is a process to generate the ID that check that it does not already exist and use a different if it does exist.</p><h3 id="5763e92c-a5e8-4c07-8a5f-31b9e566cf61" class="">Upload Image</h3><p id="3fab02ec-b49f-4c01-9697-34288aef1d13" class="">As mentioned in the section, the image is not sent a file directly but rather as a stream of data. Hence, I needed to decode the data directly into the API in order to get the image.</p><p id="543a147b-3185-4531-aa3c-49166321ea00" class="">Fortunately, Flask provides a function that will automatically decode the image in the right format and make the heavy lifting for us. Once the image is decoded, we can temporarily save it into <a href="http://Fly.io">Fly.io</a>’s machine. Then, I am using <a href="https://cloudinary.com/">Cloudinary</a> to upload and store the image permanently. The service works great and I can pass a key, in this case the timestamp, to easily identify the image later without having the full path. Hence, we do not need to store the full path in Mongo, only the timestamp, meaning we don’t even have to send back the path to the scanner, only keep the timestamp in memory.</p><pre id="271d1809-f3ad-45c2-bbcb-3c37fb2d55f1" class="code"><code>@app.route(&quot;/upload&quot;, methods=[&quot;POST&quot;])
+def upload():
+    if &quot;file&quot; not in request.files:
+        return &quot;No file part&quot;, 400
+
+    file = request.files[&quot;file&quot;]
+    if file.filename == &quot;&quot;:
+        return &quot;No selected file&quot;, 400
+
+    if file:
+        path = os.path.join(&quot;.&quot;, &quot;data&quot;, &quot;scrap_images&quot;, file.filename)
+        file.save(path)  # save the received image
+        while not os.path.exists(path):
+            time.sleep(1)
+        response = cloudinary.uploader.upload(
+            path, public_id=file.filename.replace(&quot;.png&quot;, &quot;&quot;)
+        )
+        return f&quot;Stored {file.filename}&quot;, 200</code></pre><h2 id="ad4646c1-812a-46c7-a886-eec03199f001" class="">Non-implemented Features</h2><p id="13ae5c51-6b6f-470b-943c-d2271a5b74b1" class="">In general, I implemented everything that needed to be done for the API. It always a support for the scanner and the interface, not a feature itself. It simply helps centralize the information and gives easy access to the database to all the parts of the project. There are still things that could be improved but nothing major is missing.</p><h3 id="9dc5b458-592c-46f2-bd48-a4354dcac6f3" class="">Working Login System</h3><p id="e69be82d-f1c4-4ee1-9e46-7d6dbe6fe341" class="">I wanted to make a real login and account systems but unfortunately I did not take the time to learn how to properly encode password and implement the login library in Flask. I preferred not taking passwords from users and risking a security problem. I also wanted to put my time in other aspects of the project.</p><h3 id="93e80093-bf9e-4b70-a9e0-e2a71a32ec8f" class="">Testing</h3><p id="63b09df8-09ef-49da-91f8-ba50ff60747d" class="">I also wanted to add more tests at the beginning. It makes adding new features and validating new endpoints easier and more robust. I did a couple in the beginning but as the project evolved I spent less and less time implementing tests unfortunately.</p><h1 id="ac2a4cf1-bce4-45d2-bb49-03985c88278d" class="">Scraps Processing Interface Development</h1><h2 id="c4c723a4-c3d6-49b7-9d56-3045cad95ab8" class="">Repository</h2><figure id="7d3a981f-218d-47ee-8c95-d952b56a25f3"><div class="source">https://github.com/ArnaudJalbert/scraps_processing_interface</div></figure><h2 id="c375997b-60d3-45f7-ac8f-784d1fe6067c" class="">Introduction</h2><p id="3f3e4604-90f8-41fb-9ea0-4b97e65016ac" class="">This module’s goal is to display the scrap’s information in way that is useful to the user, intuitive, and that allows for the user to retrieve useful information. It should also allow user to easily filter scraps from certain parameters.</p><h2 id="3a5a69ac-a23c-4b2a-bb99-52adb3dbc77d" class="">Technology</h2><h3 id="f0bbe832-c78e-4de7-8e7f-257b40a4f305" class="">React Native</h3><p id="9dba5859-5f17-4de5-81ed-ffaf5941742e" class="">I decided to use React Native to create the interface of Scraps Processing. I chose it because it was a tool I have wanted to learn for a long time and this seemed like the perfect opportunity to do so. It is also the easiest and most approachable way to create UIs for mobile, especially when paired with  . One of the great advantage is that the code can be exported natively to both iOS and Android, which saves development time in the future.</p><h3 id="2e5d1cff-6c53-42a5-b1b9-7797636889b4" class="">Expo</h3><p id="6942792a-50c1-4dcc-acc3-978d9e35b783" class="">Expo is a framework that can be added to React Native that enables very fast building of iOS and Android application. With Expo, I am able to build my app instantly and check it in real time on my device to make tests and evaluate the UI. Any changes can appear in real time on my device.</p><h2 id="a1474d98-cd03-4725-89e3-6aa599cdae53" class="">Features</h2><h3 id="25b52c66-7201-491c-a334-98823bc0cd06" class="">Login Page</h3><div id="062f2109-d2b0-4b49-a6c6-2a6dc3d20721" class="column-list"><div id="5d81c8b5-cb51-49d2-865d-6f2f501c2f02" style="width:68.75%" class="column"><p id="a67933b9-e88a-4d37-b2e3-d4a9b94969af" class="">The first page the user sees when opening the Scraps Processing Interface is the login page. If the user has already created an account in the , than they can easily login by simply entering their username, email, or Instagram handle.</p><p id="08267c00-de6a-44dd-afac-506805e71ba3" class="">If they don’t have an account, than they can easily create it on that page. It almost an exact copy of the . It is also using the same endpoints from the .</p><p id="8c88dbfb-7fdb-4488-bfeb-e74c20301539" class="">Having the user information also allows us to change the  specifically for that user.</p><p id="e4f47f36-553d-4935-930f-889413fb8f76" class="">In the future, it will also allow the user to modify information about the scraps they own.</p><p id="3116c646-222e-45dc-b0e4-404f7ef41779" class="">
+</p></div><div id="e960e2ae-0294-4fb0-a0cb-985646043d4d" style="width:31.25%" class="column"><figure id="c9120a6d-40d0-4389-8e8b-898bc109d99c" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8217.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8217.png"/></a></figure></div></div><h3 id="216591ea-b17a-4fcb-9c65-e0643e5ddf16" class="">Location</h3><p id="7cfed2ae-52f4-42ef-bad6-8434d77f9e53" class="">To be able to check scraps that are close to the user, we need to ask for the location of the user. This information is not used for anything else and is never stored permanently. To do so, we can use the <a href="https://docs.expo.dev/versions/latest/sdk/location/">Expo Location package</a>. This package will handle all the implementation needed to ask the user to grant permission to the location services. We can run this when launching the app to ensure the service has time to locate the user before we need to access the information since it might take a couple seconds to locate the device.</p><pre id="306f76a9-73bc-4241-a467-40fe195f5cd6" class="code"><code>(async () =&gt; {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== &quot;granted&quot;) {
+      console.log(&quot;Permission to access location was denied&quot;);
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    global.location = location;
+  })();</code></pre><h3 id="b09298bb-e09e-478d-8ad5-26e8d3ffdf31" class="">Scraps View</h3><div id="fa0543cf-a6dc-420b-82c9-382758efe3f0" class="column-list"><div id="d81dd2dc-b424-4adc-8ef6-9b8e6211d323" style="width:50%" class="column"><p id="7f6f5b4c-7b3c-49b7-b9d2-89aaa2e5ff7a" class="">When logging in, the first page the user will see is the Scraps View. This interface allows user to see the 2D representation of the outline of the scraps with the different measurements to give an idea of the scraps to the user.</p><p id="cbda1061-f3e8-497f-b7e7-e495cc31c94d" class=""><span style="border-bottom:0.05em solid"><strong>Measurements</strong></span></p><p id="101dd5ba-8a64-4496-9bce-503fdf06682c" class="">The outline is drawn with a <a href="https://www.npmjs.com/package/react-native-canvas">React Native canvas</a>. It works exactly like the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">HTML Canvas API</a>. It gives us the same base functionality and options. </p><p id="2dcd3cac-3b06-44e4-a94d-21e04f4dcb46" class="">To have the real measure displayed, a couple of tricks needed to be done. We already figured out the width and the height of the shape in the API, so we can use that information to our advantage. We can figure out how much pixels are needed for each centimeter when the shape spans the entire width or height. Once we know that information we can adjust that depending on the percentage of the width that is displayed. Since all measures are relative, we can apply this same rule to all the other measurements, not only the width.</p><p id="f7fbeca5-c569-4fa1-a499-4bfbe1e9e4ae" class="">We can then easily display all the measurements by using the points provided by the <a href="https://www.notion.so/Scraps-Processing-API-892b8bd91f204a9788fab2544dee732c?pvs=21"><span class="icon">📋</span>Scraps Processing API</a>.</p></div><div id="39b25aaa-e231-4372-a3ed-5be7096e680f" style="width:50%" class="column"><figure id="f96b4d08-908d-4053-b87a-9aba181cd274" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8220.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8220.png"/></a></figure></div></div><pre id="60f079be-998c-471d-b97e-286f25946a1d" class="code"><code>export function getPixelPerCentimeter(
+  shapeWidth,
+  shapeHeight,
+  canvasWidth,
+  canvasHeight,
+) {
+  const height = (canvasHeight / shapeHeight);
+  const width = (canvasWidth / shapeWidth);
+  if (height &lt; width) {
+    return height;
+  }
+  return width;
+}</code></pre><p id="eff5abc7-24ee-423f-9bc9-dc891dac03d7" class="">To get the list of scraps, we can use the  endpoints. All the logic is already implemented we simply need to use the information and display it properly.</p><figure id="fd505917-fd02-4f4c-bddf-02207f4c04fb" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/get_scrap_in_interface_v001.png"><img style="width:2084px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/get_scrap_in_interface_v001.png"/></a></figure><p id="1027c785-a29f-4879-9a73-e19d7b22e8a3" class=""><span style="border-bottom:0.05em solid"><strong>Zoom Slider</strong></span></p><p id="62c86b96-30f8-4b86-8f70-d6684704f9a7" class="">The zoom slider allows to scale up or down the shape. It also adjust the <strong><em>pixelPerCentimeter</em></strong> value accordingly. It is using the <a href="https://www.npmjs.com/package/@miblanchard/react-native-slider"><em>react-native-slider </em></a><a href="https://www.npmjs.com/package/@miblanchard/react-native-slider">package</a> to implement it.</p><p id="4a13df7e-08f3-4401-9f11-af78ee661177" class=""><span style="border-bottom:0.05em solid"><strong>Next and Previous Buttons</strong></span></p><p id="b594f99e-3ed5-49c8-9088-4f06c9f8ad18" class="">The first two buttons allow the user to navigate between the different available scraps in the list. By default it will show all scraps but will only allow navigation for the scraps that match the  settings.</p><p id="efd4bd34-46cc-4a8e-9783-87e5b003d854" class=""><span style="border-bottom:0.05em solid"><strong>Shape Fit Button</strong></span></p><p id="0a56de71-ce95-4a33-a159-05f50d94ff2f" class="">Navigates to the  page with the current loaded scrap.</p><p id="97fb9012-49b1-4af9-9b70-216c741f17b9" class=""><span style="border-bottom:0.05em solid"><strong>Filter Button</strong></span></p><p id="9633aa1f-9937-4f25-b07a-642921761669" class="">Navigates to the  page with the current loaded scrap.</p><h3 id="49ca5f81-fcb3-4d68-9c1e-3666516c773e" class="">Shape Fit</h3><p id="bb6b336c-105b-46bd-a81d-69fdcd15e9be" class="">The shape fit feature was the most requested feature when I did my research with the targeted audience. The goal is to see if a particular sized rectangle will fit within the scrap. This useful to designer since they often use oddly shape scrap as a basis get rectangles for patches or pockets. Since they are often small, they can try to use scrap to get the needed fabrics. That way, the can save new fabrics and use those scraps.</p><p id="fee5b6d7-c602-4201-a08e-df2c5b2f96b0" class="">To do so, we can use the pixelPerCentimeter value we already figured out in when drawing the shape. We can draw a line of <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span><span>﻿</span></span> pixels and use the value to figure out how much it measures relative to the scrap.</p><p id="3ddf019f-df2c-40fe-b16d-e584fa7f3d74" class="">I put a series of sliders to change the parameters of the rectangle to fit inside the shape. This includes the rectangle’s width and height, the shape horizontal and vertical position, and the rotation of the rectangle.</p><p id="290bf58d-410b-473b-8f7e-b456c9a56855" class="">Ideally, this feature would be automatic, an algorithm would figure out the most optimal rectangle that fits in the shape. Even the rectangle’s controls should be touchable directly on the scrap rather than being moved with sliders.</p><div id="752cc0ab-2abf-46c6-acbb-8adee3b797c4" class="column-list"><div id="f4e55804-a617-4fad-9db2-ce9b364d94a6" style="width:50%" class="column"><figure id="8ed4005d-423b-4acc-ae44-4d7fc6e7366c" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8230.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8230.png"/></a></figure></div><div id="5c987352-dbac-4d80-b0d7-f384e30c510b" style="width:50%" class="column"><figure id="c11db8f0-7913-4689-b51e-9b3ee3c9b48e" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8231.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8231.png"/></a></figure></div></div><h3 id="654002b0-20f9-42e3-af24-7fe64165e685" class="">Filter</h3><div id="50743826-3937-4175-9e1d-5dd70e6a4bc1" class="column-list"><div id="22f4230b-8889-4b0a-8ce7-c295d19bbcf5" style="width:50%" class="column"><p id="04968684-27f5-4f66-9dc4-f996df26d72e" class="">This page allows user to filter the scraps to easily find one that matches specific criteria. This gives the user a more efficient way to find a certain scrap. I am using the <a href="https://www.npmjs.com/package/react-native-dropdown-select-list"><strong>react-native-dropdown-select-list</strong></a><strong> </strong>as the dropdown list menu components<strong>. </strong>From my research, I have narrowed down parameters to filter the scraps.</p><p id="d1a7cf9e-4374-4e1a-8906-73feca9afc2a" class=""><span style="border-bottom:0.05em solid"><strong>Filter by Textile Class</strong></span></p><p id="058ad2e3-5f7f-4be0-81a5-f802c22d46e8" class="">The user<strong> </strong>can choose to only see scraps that are either natural or synthetic. These are the two main categories of textiles and it is important to effectively sort them out. We have already seen how this implemented in . We simply need to add the filters to the request and display the received data.</p><p id="3683f45d-c2e7-4cd3-8689-728936cb050d" class=""><span style="border-bottom:0.05em solid"><strong>Filter by Textile Types</strong></span></p><p id="ca27af4c-57fa-432b-9844-006503bf8828" class="">We can first get the available textile types with . Then we can display them in the dropdown list to let the users choose a type or simply choose any type. We can then use the  from the API to get the filtered data.</p></div><div id="37be3a64-4ddd-49c9-b252-edb2603ac24e" style="width:50%" class="column"><figure id="e6036490-0f97-4932-8f1f-a3e3d0949b08" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8222.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8222.png"/></a></figure></div></div><p id="a1026b24-5c8a-4b76-9296-c18133f4b494" class=""><span style="border-bottom:0.05em solid"><strong>Scraps Scope</strong></span></p><p id="4ce05d8a-e125-4551-a595-8345105658a4" class="">The user can choose to see all the scraps, only their scraps, or the scraps that are close to them. This filter is applied on top of the textile type and class. The scraps close to them includes other people’s scrap as well. To get the right scrap, we can add <code>owner={owner_id}</code> to the url parameters. It will all be handled by the .</p><p id="6877d3fa-c045-4a8a-bea0-c71841ab2615" class=""><span style="border-bottom:0.05em solid"><strong>Distance</strong></span></p><p id="1ad4a296-d88b-4a10-a1b5-dae0fe0b0492" class="">If the user chooses the see only close scraps, then the max distance needs to be set with the slider. It is at 5km by default but can be set to up to 100km and to a minimum of 1km. Once the distance and the location is passed to the url parameters, everything is is handled by the .</p><h3 id="7e94d646-717d-457c-8f71-884a3e3491ea" class="">Scraps Information</h3><div id="f4b70326-004c-4637-b65f-837791040c4e" class="column-list"><div id="07baf762-41ad-49d9-8a74-69ac963353eb" style="width:50%" class="column"><p id="75f181bc-0bf9-4f70-8fa5-f591962b74c7" class="">The scrap information of the current scrap loaded in the  can be accessed by clicking on the canvas directly. The application will navigate to the information view and load the following information:</p><ul id="cf90abc9-832e-4293-a619-a951cb986b5f" class="bulleted-list"><li style="list-style-type:disc">Scraps ID</li></ul><ul id="7f555a40-d59f-40e6-b3fe-1448a09d29dd" class="bulleted-list"><li style="list-style-type:disc">Textile Class</li></ul><ul id="7dd34706-a916-4c34-aad3-6952a4a08e40" class="bulleted-list"><li style="list-style-type:disc">Textile Type</li></ul><ul id="8fcad04d-d566-44a7-a629-8b3249ce0a38" class="bulleted-list"><li style="list-style-type:disc">Username</li></ul><ul id="0699d6b5-daa6-4d65-b55a-f5c9c8172afc" class="bulleted-list"><li style="list-style-type:disc">User’s Email</li></ul><ul id="d482306a-409d-4cc3-bed8-602f97adda69" class="bulleted-list"><li style="list-style-type:disc">User’s Instagram</li></ul><ul id="47252088-4763-4e4e-aff9-b11caeb1be98" class="bulleted-list"><li style="list-style-type:disc">Picture of the Scrap</li></ul><ul id="10e848b4-a9da-4f1c-a348-2c69de86701e" class="bulleted-list"><li style="list-style-type:disc">Notes about the scrap</li></ul><p id="76032d56-99c5-4aeb-a452-879ecdfad684" class="">The information cannot be modified in this view but ultimately it would also allow the modification of the data if the scrap is owned by the current logged in user. If this is not your scrap, you can easily open the Instagram of the scrap’s owner to get in contact with them.</p></div><div id="be421f25-560e-46f2-a76c-9a2d8784f802" style="width:50%" class="column"><figure id="d018364d-a132-4021-b446-e439e0c9b4a9" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8228.png"><img style="width:1170px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8228.png"/></a></figure></div></div><h2 id="a14dd3c1-c5be-4d08-a899-a5b5f0f96568" class="">Live Demo</h2><figure id="916fe07d-0cdd-4514-9595-c432204e354e"><div class="source"><a href="https://youtu.be/7im4xonXBSU">https://youtu.be/7im4xonXBSU</a></div></figure><h2 id="7d2ad697-cd79-421b-8e07-439f06f1f7b7" class="">Non-implemented Features</h2><h3 id="56ef599c-8f75-4568-8f18-e888668ba718" class="">Enhanced User Experience</h3><p id="09e17d73-b87c-4dff-b567-9ae92286b47b" class="">The user experience right now is not vey intuitive or smooth. This is due to my lack of experience in UI and UX design but also because of the lack of time I allowed myself to design the application. It would need to be better planned out and designed. Bringing someone in that is good in this area would be a great way to improve it.</p><h3 id="ece50962-464e-4168-8a62-7a3c6bb99a69" class="">Multiple Scraps View</h3><p id="a48db66e-52ed-4767-ae52-05bc78b925a3" class="">Right now the user can only view one scrap at a time. This is not very effective to browse through multiple scrap and is tedious. Having a multiple scraps and scrollable view would make navigation much more effective.</p><h3 id="7394ddbc-ba56-4f44-8850-cb9f00fab654" class="">Modification of data</h3><p id="92050cc1-1b8a-4b27-b5cc-5b781beaff7a" class="">The data about the scraps would need to be editable by the user to make the exchange of scraps effective. A scrap would need to be flagged as “used” when it is incorporated into a project or garments. The scraps should also be able to change ownership if it is given to someone. The basic parameters should also be editable.</p><h3 id="1fa2f3ad-4c36-49a5-a180-a4cb527f954c" class="">Mosaic View</h3><p id="092c8ae2-0d48-41da-8348-b55f30843162" class="">A mosaic view that overlaps different scraps to allow the scraps to be sewn back together to make “new fabrics” would have been a great feature to have. I decided to prioritize the  instead since it was more realistically implementable in the timeframe.</p><h1 id="c0858a73-3b4c-474b-ad14-ab5ef25e512b" class="">Exhibition</h1><p id="29381b19-cf9e-4be2-ab64-5e34f3b70c0e" class="">The first prototype of Scraps Processing was shown on <time>@December 5, 2023</time> at 4th Space. To showcase the prototype, I have brought scraps that were in my partner’s bin for a long time and that have been forgotten. I installed the scraps on a table with a Sharpie pen and some masking tape. The phone with the applications installed was available and the content was displayed on the TV. Since the application is still a prototype, I was on site to assist people in trying out the app. I saw it as a mix between a workshop and live demo. I was also able to get feedback from the participants at the same time.</p><div id="36208c42-01fe-4bec-bb8c-caf2fb100866" class="column-list"><div id="5f6d5863-2273-4f13-9998-27ea026a7679" style="width:62.5%" class="column"><figure id="11987d69-1e30-4622-94c3-745aaef414f9" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8244.jpeg"><img style="width:384px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8244.jpeg"/></a></figure></div><div id="95f90ed2-d389-4d6a-af7c-e828d683c11e" style="width:37.50000000000001%" class="column"><figure id="35dac88f-6fd8-4bdd-bcb5-eb5ff18bc9f2" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8243.jpeg"><img style="width:5712px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8243.jpeg"/></a></figure><figure id="05b071b6-e982-45dc-8408-8cf8ebc9015f" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8245.jpeg"><img style="width:4032px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8245.jpeg"/></a></figure></div></div><p id="2102cdc0-1ed3-411c-b02a-d146955e4464" class="">As people came by, they tried out the prototype and were able to scan some scraps with the app. They could use the scanner to draw the outline of the scraps, tag them with the provided ID and the masking tape/Sharpie and look at the results in real time</p><div id="c39f425a-5bd3-4c5b-ba4f-12732341d558" class="column-list"><div id="2d4d695d-42ab-42d1-ab6e-1151820690fc" style="width:50%" class="column"><figure id="11e96a92-9331-4831-a821-fc4607528c79" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8262.jpeg"><img style="width:5712px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8262.jpeg"/></a></figure></div><div id="76d7477a-7cad-4f5c-99d3-b82af9f13b4b" style="width:50%" class="column"><figure id="d5298e56-e3c5-4c79-b27e-bcb77e92ad6d" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8265.jpeg"><img style="width:5712px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8265.jpeg"/></a></figure></div></div><p id="6437fadd-e772-4bf9-a26a-b0a29a6f04fe" class="">In general, people were impressed by the application. A lot of them were surprised that the scanning was actually working and that it would appear on the screen in real time. However, it was clear that the application still needs a lot of work. While the background processes worked, people did not find the user interface and experience intuitive and smooth. It showed that I spent most of the time of the background process.</p><p id="a19c1592-d079-4604-8a56-68b1a7831708" class="">There were about 25 scraps scanned and added to the database that day. All in all I was very happy with how things turned out.</p><h1 id="25aa5ae7-e9fa-4937-990b-32624e10080f" class="">Reflection</h1><p id="d248e62e-adf0-4ca4-9099-4302c04d609f" class="">I think my project started as a very conceptual idea and turned into a very technical challenge. I had to make a lot of research and reach out to a lot of people to understand the subject I was tackling. It was something I had very little knowledge on and was uncomfortable working with, but I think my different perspective and methods was necessary to accomplish this project.</p><p id="fed074c0-9ea3-4a67-a894-4f8b4c947bf6" class="">From all the people I talked with, they told me they never thought of approaching textile scraps in this way. Maybe it is my computer science background and my obsession with data structure and organization that caused this, but I do believe that the intersection of the two fields was beneficial. There was a lot of technology involved in the making of prototype and the biggest challenge was linking them all together.</p><p id="2f6fd101-34f0-42a8-9068-242ad2ad75bd" class="">Like I mentioned, the background process was a lot more advanced than the user interface and experience. I think it was a good decision to spend more time on the processes, since it answered the research questions better. What I tried to show is that it is possible to create this platform to capture and share textile scraps, and the basis of that was to capture and store the data about the scraps, and it’s what the prototype is doing. The initial goal of the project was accomplished in my opinion and can only be improved from now on with future iterations and external help.</p><h1 id="9b6583b4-dc5b-44e0-994e-0153f3abbdb0" class="">Bibliography</h1><p id="e1cfe159-c7df-4213-b614-2847b05ebfdf" class="">Nicole Mclaughlin(2021). Nicole McLaughlin. JUST AN IDEA BOOKS. <a href="https://justanidea.com/products/nicole-mclaughlin">https://justanidea.com/products/nicole-mclaughlin</a></p><p id="cc84787d-9436-4245-9092-4447d2eb6eed" class=""><em>EXPLORATION</em>. (n.d.). NICOLE MCLAUGHLIN. Retrieved December 11, 2023, from <a href="https://nicolemclaughlin.com/exploration">https://nicolemclaughlin.com/exploration</a></p><p id="56bcd50f-11cf-44e1-a9a2-d550f8c879b2" class="">Puig de la Bellacasa María. (2017). Matters of care : speculative ethics in more than human worlds (Ser. Posthumanities, 41). University of Minnesota Press. Retrieved December 11, 2023, from <a href="https://muse-jhu-edu.lib-ezproxy.concordia.ca/book/50528">https://muse-jhu-edu.lib-ezproxy.concordia.ca/book/50528</a>.</p><p id="bd732103-8259-4712-b1f8-ae06301cff8e" class="">Ahmed, S. (2006). <em>Queer phenomenology : orientations, objects, others</em>. Duke University Press.</p><p id="c7dea450-6a93-48c3-b4f5-ec28cfbca3f3" class="">Shaw, R. (2009). American quilts: The democratic art, 1780-2007. Sterling. <a href="https://catdir.loc.gov/catdir/enhancements/fy1010/2008047360-b.html">https://catdir.loc.gov/catdir/enhancements/fy1010/2008047360-b.html</a></p><p id="6073479e-7375-441c-9f40-af973b4e6e15" class="">FABSCRAP. (n.d.). FABSCRAP. Retrieved September 27, 2023, from <a href="https://fabscrap.org/">https://fabscrap.org</a></p><p id="b5e56f82-2cfb-48e9-84c2-897b42a60fc2" class="">Juanga-Labayen, J. P., Labayen, I. V., &amp; Yuan, Q. (2022). A Review on Textile Recycling, Practices and Challenges. Textiles, 2(1), Article 1. <a href="https://doi.org/10.3390/textiles2010010">https://doi.org/10.3390/textiles2010010</a></p><h1 id="4542a15f-9b0c-4d4a-85f4-40b2395a1ae0" class="">Public Mediation @ 4th Space</h1><h2 id="41296f96-f74a-47a3-92b2-10644bb39f71" class="">Process</h2><p id="3ee364f9-8927-42b4-a751-5cc4e178f480" class="">The process of putting up the exhibition started really slowly from my perspective. At first, we just talked about our project, how we envisioned them, discussed our research questions, and see how they could relate to each other. The first idea that inspired our exhibition was the keywords we chose:</p><ul id="685d6a6b-23ac-4797-a92c-5a69b1e35a1d" class="bulleted-list"><li style="list-style-type:disc">Cherish</li></ul><ul id="8c8b4516-fa5c-4afb-b343-b45a09e8347b" class="bulleted-list"><li style="list-style-type:disc">Divert</li></ul><ul id="a4f7135a-1867-4177-bfe2-ada36ce6a05d" class="bulleted-list"><li style="list-style-type:disc">Transition</li></ul><ul id="8f72f401-4011-48d4-90c8-6e9cfc32df81" class="bulleted-list"><li style="list-style-type:disc">Attune</li></ul><ul id="e826e3b1-9604-4093-b5fe-4ac1de567f5f" class="bulleted-list"><li style="list-style-type:disc">Matter</li></ul><p id="2dcd2d90-ea47-4ede-969e-1c2a941ed20b" class="">These 5 keywords were the driving force of the mediation and became the foundation of everything else. They inspired the abstract, the final research questions, the activities, and even the poster. Since our projects mainly focus on our relationship with materials, how these relationships evolve and divert over time, and how we can affect these connections, we decided to focus on how we perceive the materials for the mediation.</p><h3 id="3b65fc07-8ce2-4c87-80ad-f1c5d705cb24" class="">Poster</h3><p id="09723427-d50a-437a-8ada-ceaf1dd17fe2" class="">The poster was designed by Astrid and Sydney. The first idea was to put the outline of our representatives on the poster. We decided not to got through with this idea since a lot of members were still unsure what was going to be their representative. Instead, Astrid and Sydney had this idea of creating these colored bars for each member and color them depending on how much we relate to each keyword. Each color represents one keyword, the longer the color is on the bar, the more our project is in line with this keyword and vice-versa. We did exclude <em><em><em><em><em><em>matter</em></em></em></em></em></em> from the keywords since we thought it related equally to all our projects.</p><div id="28d21019-b7a7-480c-8e41-39688b7c15c6" class="column-list"><div id="931b54b5-f7d8-45e5-a820-726c99d70563" style="width:43.75%" class="column"><figure id="14e25e94-e183-49b5-81c8-e65d94034416" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2020.png"><img style="width:432px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2020.png"/></a></figure></div><div id="7d753ca3-50e5-4c6a-929f-b0f5a0674c03" style="width:56.25%" class="column"><figure id="2ac7b1bd-822e-4269-ad60-c0caa72d8d13" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2021.png"><img style="width:3834px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/Untitled%2021.png"/></a></figure></div></div><h3 id="b26e04d8-d514-4fae-9dee-d39fc64b03de" class="">Representatives</h3><p id="047f55b7-deee-47af-9899-504fd20092e1" class="">The first concept we established for the mediation was to each choose a “representative”, a material that represents our project but that is not necessarily part of our project. For example, I chose a tape measure to represent my project. The goal was to use the representative to slowly get attuned to the materials linked to our project before looking at them. We had different ideas about how to display our representatives. We thought about putting the outline of them on our poster, hanging them from the ceiling, simply displaying them on a table. We ended up settling on using them to make a sensory attunement session.</p><p id="26656345-e441-4a21-b75b-7e10770b1b08" class="">Listen to the soundscape here: <a href="https://youtu.be/AUBbBqztd2k">https://youtu.be/AUBbBqztd2k</a>.</p><h3 id="fe448388-d77e-4cd4-ae81-e06a3ef7bcbf" class="">Sensory Attunement Session</h3><p id="acafa7a7-5b94-4a47-8a90-5102af9bf75f" class="">The goal of the sensory experience was to slowly discover the representatives through different senses and experience how our relationship with them evolves throughout the process. </p><p id="18ac960d-cecb-4780-8d62-43125689ff1b" class="">The experience started with sound. Each member was asked to record a short audio clip of their representatives and send them to me. I then created a soundscape with all the sounds I received. The soundscape ended up sounding ASMR-ish and the direction from the team was to create a slow progression from individual sounds to a representatives cacophony. We started with sounds since we thought it would be a sound “<em>far</em>” from the material, leaving speculation to what each representative could be.</p><p id="dbe97f32-708c-4700-b3b3-804ef8ce283c" class="">Then we moved on to the touch. It was important to experience touching before seeing. The mystery of the material needed to stay present and if people could see the material before they touch it, they would inevitably sense it differently. So we decided to hide the representatives in boxes where they could be touched but not seen.</p><div id="d1bf862b-86b9-44fb-9a9a-341880d39c39" class="column-list"><div id="54bfcfba-3930-4475-949e-5af9df1fc2df" style="width:50%" class="column"><figure id="e3dad021-749c-4d36-a899-3d1550d6a79a" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8250.jpeg"><img style="width:5712px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8250.jpeg"/></a></figure></div><div id="3c8c1f2d-27dc-4ffe-8612-094c31d2b6e5" style="width:50%" class="column"><figure id="7e6558d1-cb2c-47bd-b60e-8f22d84d4d2a" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8251.jpeg"><img style="width:5712px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8251.jpeg"/></a></figure></div></div><p id="4d8a97c7-9d75-4129-9ab5-4bc069f6bf75" class="">We left pens on the table so people could write what they feel and experience directly on the boxes or the paper on the table. Not seeing the material definitely enhanced the sensory experience. People were really curious about what was inside and became more and more comfortable around the materials.</p><p id="49085a87-52f1-41d8-a158-31d84964fd26" class="">Finally, we revealed the material by lifting the boxes. People were invited to continue looking at the representatives and write what they experienced on the paper. I did notice that everyone was less comfortable touching the material once they were seeing it. It felt like the sight of the object made people uncomfortable, as if it suddenly became precious or frowned upon to touch it. It was very interesting to observe how they reacted and how different the notes were once everything was revealed.</p><div id="12921b47-4990-41c5-a308-4bc5dc0c9af9" class="column-list"><div id="7acc02f3-b694-4602-9689-fb01f400b6df" style="width:50%" class="column"><figure id="aeda99d1-a3e5-4d4f-9300-e4ad46186f86" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8254.jpeg"><img style="width:1104px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8254.jpeg"/></a></figure></div><div id="eef447fc-28ff-4ccc-93de-605ab29cd8f6" style="width:50%" class="column"><figure id="8160e679-610e-41ee-a6f4-753bbbbc6af6" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8255.jpeg"><img style="width:1104px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8255.jpeg"/></a></figure></div></div><div id="95d3fe07-a323-4c1a-bc60-b5065603b1d1" class="column-list"><div id="d7cf65be-2fcb-457e-8d49-ce176a251ae0" style="width:50%" class="column"><figure id="8411df4d-df94-4cbf-9f80-9bb0b55fce07" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8257.jpeg"><img style="width:5712px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8257.jpeg"/></a></figure></div><div id="57cfbb48-f7b0-4fe9-98e7-e4bad69e24b3" style="width:50%" class="column"><figure id="2b2747e1-9611-4319-a0ac-77c586d55594" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8258.jpeg"><img style="width:5712px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8258.jpeg"/></a></figure></div></div><div id="62d40960-2fb9-456f-8e39-4c73a346abb0" class="column-list"><div id="af557637-aafb-4faf-8836-2661dd17aa28" style="width:50%" class="column"><figure id="59b78288-321e-4e21-8551-6256c8148c70" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8259.jpeg"><img style="width:5712px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8259.jpeg"/></a></figure></div><div id="608017d5-7de9-47bf-b382-a543e7ebf8b3" style="width:50%" class="column"><figure id="e8a0934c-c691-44d3-8cae-3f48657da427" class="image"><a href="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8260.jpeg"><img style="width:5712px" src="Scraps%20Processing%204287926ef3494da09c1d758066cff35e/IMG_8260.jpeg"/></a></figure></div></div><p id="62210dca-4113-4461-b835-b24df07bffe2" class="">The sensory experience was, in my opinion, a success. It set the tone for the rest of the mediation and was a great introduction to the rest of our project.</p><h3 id="e57d7a60-c2f1-463d-9a8e-c65522980a9a" class="">Individual Presentation</h3><p id="21b280dd-9367-4f3d-a7fc-39065c7af2cf" class="">We first let everyone roam free for about 20 minutes so they could get attuned to our project, explore the different experiences, chat with each other about the sensory experience. Then we each took 5-ish minutes to present our project, methodology, research, research questions, anything we wanted to share or explain about our creations.</p><h3 id="f8d61182-0b51-46e6-9814-cf53e7578678" class="">Roundtable</h3><p id="cf5598a8-6ce7-481e-a466-02cfac3d66a4" class="">We then all sat at the table to answer questions, discuss our projects, our research, and anything related to the mediation. Alice mediated the discussion and sparked the conversation. We did write some questions in advance, related to our keywords, which were also targeted for specific group members, but it was more of a guideline than a rigorous script.</p><h2 id="741ac076-8089-4b0c-a4c7-b8d398ceca99" class="">Reflection</h2><p id="ae8eee34-ac78-40e8-9829-affd1eda88c8" class="">Personally, it was my first time planning and putting together an event like this. I am used to presenting my work and projects in a much more direct and literal manner. In Computation Arts and Computer Science, it is usually much more technical and informative. I was very impressed by the ability of my colleagues to conceptualize and frame the mediation. They approached very differently from how I would have done it, by thinking how our projects relate to each other, figuring out how are keywords can be integrated can be integrated into the mediation. It changed my perspective on how to approach this event and future events I could participate in. I think the sensory experience perfectly introduced my project and others’ creations, broke the ice for the event and perfectly explained the context of the exhibition. If I had to do it again, I would definitely try to present my project differently, maybe in a less obvious way, let people discover and explore more. </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
